@@ -25,3 +25,19 @@ export async function advanceDays(page: Page, days: number) {
   const res = await page.request.post('/api/dev/time', { data: { advanceDays: days } });
   expect(res.ok()).toBeTruthy();
 }
+
+/** Create a product + scheduled regimen through the API (for tests that aren't about the builder). */
+export async function seedMorningRegimen(page: Page, opts: { name?: string; steps?: number } = {}) {
+  const html = await (await page.request.get('/products/new')).text();
+  const cleanser = /<option value="([0-9a-f-]{36})">Cleanser<\/option>/.exec(html)?.[1];
+  expect(cleanser).toBeTruthy();
+  const product = await (await page.request.post('/api/products', { data: { brand: 'CeraVe', name: 'Foaming Cleanser', category_id: cleanser } })).json();
+  const steps = [
+    { step_type: 'cleanse', user_product_id: product.id, wait_seconds_after: 0 },
+    { step_type: 'protect', free_text_label: 'SPF 50', wait_seconds_after: 0 },
+  ].slice(0, opts.steps ?? 2);
+  const { id } = await (await page.request.post('/api/regimens', { data: { name: opts.name ?? 'Daily Morning', time_of_day: 'morning', steps } })).json();
+  const res = await page.request.post(`/api/regimens/${id}/schedule`, { data: { mode: 'recurring', days: ['MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'] } });
+  expect(res.ok()).toBeTruthy();
+  return { regimenId: id as string, productId: product.id as string };
+}

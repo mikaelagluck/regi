@@ -28,7 +28,7 @@ Status legend: ✅ built & checked at 390px · 🟡 partial · ⬜ not started
 | 19 | `regimen-builder-schedule-recurring` | B5.5 recurring, C3.5 | `/regimens/[id]/schedule` | 1 | ✅ |
 | 20 | `regimen-builder-schedule-range` | B5.5 date range | `/regimens/[id]/schedule?mode=range` | 1 | ✅ |
 | 21 | `edit-scope` | B5.6 | `/today` bottom sheet | 1 | ✅ |
-| 22 | `calendar-month` | B6.2–B6.4, B9.4 | `/calendar?view=month` (Day view = `/calendar?view=day`, B6.1) | 2 | ⬜ |
+| 22 | `calendar-month` | B6.2–B6.4, B9.4 | `/calendar?view=month` (Day view = `/calendar?view=day`, B6.1) | 2 | ✅ |
 | 23 | `share-create` | B7.1 | `/share/new?type=regimen&id=…` | 3 | ⬜ |
 | 24 | `share-view` | B7.2, B7.4, B7.5 | `/r/[slug]` (public, SSR, OG); product: `/p/[slug]` | 3 | ⬜ |
 | 25 | `profile-01` | B8.1 | `/profile` | 0/4 | ⬜ |
@@ -50,6 +50,7 @@ npm run lint && npm run build
 
 ## Test status
 - Phase 0: Vitest 74/74 ✅ · Playwright auth 2/2 ✅ · lint ✅ · build ✅
+- Phase 2: Playwright tracking 3/3 ✅ (calendar dots + retro marker, streak/rollover cron + Day N, finish → history/repurchase)
 - Phase 1: Vitest 74/74 ✅ · Playwright 3/3 ✅ (solo MVP flow: sign up → 5 products → morning regimen → complete incl. timer + skip-wait + success → next logical day reappears → missed day resets streak) · lint ✅ · build ✅
 
 ## Needs Mikaela
@@ -62,4 +63,4 @@ npm run lint && npm run build
 - Terms / Privacy copy (placeholder pages at /terms, /privacy).
 
 ## Next step
-Phase 2 — Calendar Day + Month views (dots, expanded day card, retro marker), rollover cron wiring, product history polish.
+Phase 3 — Sharing: share creation, public /r and /p pages, copy-to-my-regimens through sign-in, wishlist-add, tracking, My Shares.

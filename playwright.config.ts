@@ -27,6 +27,7 @@ export default defineConfig({
       ALLOW_DEV_AUTH: '1',
       ALLOW_TIME_TRAVEL: '1',
       DEV_AUTH_SECRET: 'e2e-secret-not-for-production',
+      CRON_SECRET: 'e2e-cron-secret',
     },
   },
 });
