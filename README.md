@@ -29,8 +29,8 @@ npm run lint && npm run typecheck && npm run build
    ```
    - Auth → URL configuration: Site URL `https://<domain>`, redirect `https://<domain>/auth/callback`.
    - Auth → Providers: enable Google (client ID/secret); Auth → SMTP: your email provider for magic links.
-   - Scheduled jobs (pick one): Vercel Cron (`vercel.json`; per-minute needs Vercel Pro) **or** Supabase Cron —
-     enable `pg_cron` + `pg_net`, then run `select public.regi_schedule_jobs('https://<domain>', '<CRON_SECRET>');`
+   - Scheduled jobs use Supabase Cron (works on Vercel's free plan): enable the `pg_cron` + `pg_net` extensions, then
+     run `select public.regi_schedule_jobs('https://<domain>', '<CRON_SECRET>');` in the SQL editor.
 2. **Vercel** — import the GitHub repo, set every variable in `.env.example`
    (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`,
    `DATABASE_URL` = Supabase "Transaction pooler" string, `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`,
