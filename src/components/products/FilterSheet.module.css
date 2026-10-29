@@ -1,0 +1,15 @@
+.stack { display: flex; flex-direction: column; gap: var(--space-5); }
+.group { border: 0; display: flex; flex-direction: column; gap: var(--space-2); }
+.drills { display: flex; flex-direction: column; border-top: 1px solid var(--grey-2); }
+.drill { display: flex; align-items: center; justify-content: space-between; min-height: 60px; border-bottom: 1px solid var(--grey-2); text-align: left; }
+.drillText { display: flex; flex-direction: column; gap: 2px; }
+.drillValue { font-size: var(--text-body); font-weight: var(--weight-medium); }
+.reset { min-height: var(--tap-min); padding: 0 var(--space-2); font-size: var(--text-body-sm); font-weight: var(--weight-medium); color: var(--ink-tertiary); }
+.back { display: inline-flex; align-items: center; gap: 4px; min-height: var(--tap-min); font: inherit; }
+.list { display: flex; flex-direction: column; }
+.listHead { padding: var(--space-3) 0 var(--space-1); }
+.checkRow { display: flex; align-items: center; gap: var(--space-3); min-height: 48px; padding-left: 10px; cursor: pointer; border-bottom: 1px solid var(--grey-2); font-size: var(--text-body); }
+.search { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; padding: 0 var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--grey-3); color: var(--ink-tertiary); }
+.search:focus-within { border-color: var(--ink); box-shadow: var(--focus-ring); }
+.searchInput { flex: 1; border: 0; background: transparent; font-size: 1rem; color: var(--ink); }
+.searchInput:focus-visible { box-shadow: none; }

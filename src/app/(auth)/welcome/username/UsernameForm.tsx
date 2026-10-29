@@ -60,7 +60,7 @@ export function UsernameForm({ next, initialDisplayName }: { next: string; initi
         <div>
           <TextField
             label="Username"
-            prefix="@"
+            lead="@"
             autoCapitalize="none"
             autoCorrect="off"
             spellCheck={false}

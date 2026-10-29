@@ -36,6 +36,15 @@ One line per judgment call: what was ambiguous → what I chose (where). ★ = w
 - `started_on` auto-defaults to the first logged use (C2.4).
 
 ## UX
+- Builder keeps showing the remaining scaffold slots (dashed) after the first step is added, and new scaffold steps slot into canonical order (Cleanse → Treat → Moisturize → Protect); B5.3 only describes the fully-empty state.
+- "Add step" (non-empty builder) opens the step editor directly; "Add custom step" (empty builder) offers Mask/Massage/Tool/Mist/Apply per B5.3.
+- New regimen schedule preselects every weekday no other regimen holds at that time of day — never silently steals days by default; tapping a "currently: X" day performs the C3.5 swap.
+- Per-regimen reminder time lives on the schedule screen (B8.3 says reminders live "on the regimen itself").
+- Repurchase badge shows the bottle number (`repurchase_count + 1`, e.g. "3rd"), matching the detail strip's "Bottle 2nd".
+- Mark empty → [empty-product-modal]; "Repurchasing" puts it straight back in Using with bottle +1 and a fresh start date; Skip still records a history row.
+- Empty-product modal built in Phase 1 (not 2) so "Mark empty" was never a dead link.
+- Today: retroactive logging never starts wait timers (they only make sense live); the last unchecked step never starts a timer.
+- Today has a quiet "Skip this regimen today" link (skips break the streak per C3.3); PRD lists the skip endpoint but no UI.
 - ★ **Wait-timer interpretation.** PRD B3.6 says the *next* row fills; the wireframe [timer-states] ("same step, three moments") shows the *timed step's own* row filling with "Wait 4:59 before Moisturizer" and auto-checking at 100%. Built per wireframe: tapping a step with a wait starts its timer; at 100% it auto-checks. Checking the timed step or the next step during the wait opens the skip-wait sheet (B3.7); Continue checks immediately and cancels the push.
 - Single active timer in the UI (C8): starting a new wait clears any running one for that regimen.
 - Primary CTA = pink (conflict #2) with **ink text**, because white on pink is 2.3:1 and fails WCAG; same for the active Today tab and active pills.

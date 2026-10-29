@@ -1,0 +1,5 @@
+.wrap { display: flex; flex-direction: column; gap: var(--space-2); }
+.view { text-align: left; font-size: var(--text-body-sm); line-height: 1.55; min-height: var(--tap-min); white-space: pre-wrap; }
+.edit { display: flex; flex-direction: column; gap: var(--space-2); }
+.area { width: 100%; padding: var(--space-3); border-radius: var(--radius-md); border: 1px solid var(--ink); font-size: 1rem; resize: vertical; }
+.buttons { display: flex; justify-content: flex-end; gap: var(--space-2); }

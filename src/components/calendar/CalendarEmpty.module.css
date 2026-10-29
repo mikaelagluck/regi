@@ -1,0 +1,11 @@
+.wrap { position: relative; }
+.header { display: grid; grid-template-columns: var(--tap-min) 1fr var(--tap-min); align-items: center; padding: calc(env(safe-area-inset-top) + var(--space-2)) var(--space-2) var(--space-2); }
+.chev { display: inline-flex; align-items: center; justify-content: center; height: var(--tap-min); color: var(--grey-4); }
+.title { display: flex; flex-direction: column; align-items: center; }
+.month { font-family: var(--font-display); font-style: italic; font-weight: var(--weight-display); font-size: 1.375rem; }
+.grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; padding: var(--space-3) var(--gutter); opacity: 0.35; }
+.w { text-align: center; font-size: var(--text-caption); color: var(--ink-tertiary); }
+.cell { aspect-ratio: 1; border-radius: var(--radius-sm); border: 1px dashed var(--grey-4); }
+.copy { position: absolute; left: 0; right: 0; top: 46%; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 var(--gutter); }
+.headline { font-size: var(--text-headline); font-weight: var(--weight-medium); }
+.body { max-width: 240px; margin-top: 6px; font-size: var(--text-label); color: var(--ink-tertiary); }

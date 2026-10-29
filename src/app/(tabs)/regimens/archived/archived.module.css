@@ -1,0 +1,3 @@
+.body { display: flex; flex-direction: column; gap: var(--space-3); padding: var(--space-2) var(--gutter); }
+.list { display: flex; flex-direction: column; border-radius: var(--radius-lg); border: 1px solid var(--grey-3); overflow: hidden; }
+.list > li + li { border-top: 1px solid var(--grey-2); }

@@ -3,7 +3,7 @@ import { IconStar, IconStarFilled } from '@tabler/icons-react';
 import { useId, type ComponentProps, type ReactNode } from 'react';
 import s from './Field.module.css';
 
-export function TextField({ label, hint, prefix, optional, error, className, ...rest }: ComponentProps<'input'> & { label: string; hint?: ReactNode; prefix?: ReactNode; optional?: boolean; error?: string }) {
+export function TextField({ label, hint, lead, optional, error, className, ...rest }: ComponentProps<"input"> & { label: string; hint?: ReactNode; lead?: ReactNode; optional?: boolean; error?: string }) {
   const id = useId();
   return (
     <div className={`${s.field} ${className ?? ''}`}>
@@ -12,7 +12,7 @@ export function TextField({ label, hint, prefix, optional, error, className, ...
         {optional && <span className={s.optional}> (optional)</span>}
       </label>
       <div className={`${s.control} ${error ? s.invalid : ''}`}>
-        {prefix && <span className={s.prefix}>{prefix}</span>}
+        {lead && <span className={s.prefix}>{lead}</span>}
         <input id={id} className={s.input} aria-invalid={!!error} aria-describedby={hint || error ? `${id}-hint` : undefined} {...rest} />
       </div>
       {(error || hint) && (

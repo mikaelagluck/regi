@@ -17,6 +17,8 @@ interface Common {
   size?: 'md' | 'sm';
   block?: boolean;
   icon?: ReactNode;
+  /** Icon after the label (e.g. a forward arrow). */
+  iconEnd?: ReactNode;
   children?: ReactNode;
 }
 
@@ -24,20 +26,22 @@ function cls({ variant = 'primary', size = 'md', block }: Common, extra?: string
   return [s.btn, s[variant], s[size], block && s.block, extra].filter(Boolean).join(' ');
 }
 
-export function Button({ variant, size, block, icon, children, className, loading, ...rest }: Common & ComponentProps<'button'> & { loading?: boolean }) {
+export function Button({ variant, size, block, icon, iconEnd, children, className, loading, ...rest }: Common & ComponentProps<'button'> & { loading?: boolean }) {
   return (
     <button type="button" className={cls({ variant, size, block }, className)} aria-busy={loading || undefined} disabled={rest.disabled || loading} {...rest}>
       {icon}
       {children && <span>{children}</span>}
+      {iconEnd}
     </button>
   );
 }
 
-export function ButtonLink({ variant, size, block, icon, children, className, ...rest }: Common & ComponentProps<typeof Link>) {
+export function ButtonLink({ variant, size, block, icon, iconEnd, children, className, ...rest }: Common & ComponentProps<typeof Link>) {
   return (
     <Link className={cls({ variant, size, block }, className)} {...rest}>
       {icon}
       {children && <span>{children}</span>}
+      {iconEnd}
     </Link>
   );
 }

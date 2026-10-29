@@ -121,7 +121,7 @@ export function AtomsGallery() {
 
         <Block title="Fields">
           <div className={s.col}>
-            <TextField label="Username" prefix="@" placeholder="sarahskincare" hint="Available" />
+            <TextField label="Username" lead="@" placeholder="sarahskincare" hint="Available" />
             <TextField label="Display name" optional placeholder="Sarah Mitchell" />
             <TextArea label="Final thoughts" optional placeholder="Best exfoliant I've tried." />
             <Switch checked={sw} onChange={setSw} label="Wait timer alerts" description="Notify when a wait timer completes" />

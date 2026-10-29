@@ -2,7 +2,7 @@
 import { IconBottle, IconCalendarMonth, IconCheckbox, IconListCheck, IconUser, type Icon } from '@tabler/icons-react';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 import s from './TabBar.module.css';
 
 export const TABS: { root: string; label: string; icon: Icon }[] = [
@@ -19,12 +19,26 @@ export function tabFor(pathname: string) {
   return TABS.find((t) => pathname === t.root || pathname.startsWith(`${t.root}/`));
 }
 
-function read(root: string): string | null {
+// Remembered last screen per tab, read via useSyncExternalStore so SSR and hydration agree.
+const listeners = new Set<() => void>();
+const subscribe = (cb: () => void) => {
+  listeners.add(cb);
+  return () => listeners.delete(cb);
+};
+function snapshot(): string {
   try {
-    return sessionStorage.getItem(KEY(root));
+    return TABS.map((t) => sessionStorage.getItem(KEY(t.root)) ?? '').join('|');
   } catch {
-    return null;
+    return '';
   }
+}
+function remember(root: string, href: string) {
+  try {
+    sessionStorage.setItem(KEY(root), href);
+  } catch {
+    /* storage unavailable — tabs just open at their root */
+  }
+  listeners.forEach((l) => l());
 }
 
 /**
@@ -36,22 +50,20 @@ export function TabBar() {
   const search = useSearchParams();
   const current = tabFor(pathname);
 
+  const memory = useSyncExternalStore(subscribe, snapshot, () => '').split('|');
+
   useEffect(() => {
     if (!current) return;
     const q = search.toString();
-    try {
-      sessionStorage.setItem(KEY(current.root), q ? `${pathname}?${q}` : pathname);
-    } catch {
-      /* storage unavailable — tabs just open at their root */
-    }
+    remember(current.root, q ? `${pathname}?${q}` : pathname);
   }, [current, pathname, search]);
 
   return (
     <nav className={s.bar} aria-label="Main">
       <ul className={s.list}>
-        {TABS.map((t) => {
+        {TABS.map((t, i) => {
           const active = current?.root === t.root;
-          const href = active ? t.root : (read(t.root) ?? t.root);
+          const href = active ? t.root : memory[i] || t.root;
           const Icon = t.icon;
           const isToday = t.root === '/today';
           return (
@@ -61,11 +73,7 @@ export function TabBar() {
                 className={`${s.link} ${active ? s.active : ''} ${isToday ? s.today : ''}`}
                 aria-current={active ? 'page' : undefined}
                 onClick={() => {
-                  if (active) {
-                    try {
-                      sessionStorage.setItem(KEY(t.root), t.root);
-                    } catch {}
-                  }
+                  if (active) remember(t.root, t.root);
                 }}
               >
                 <span className={s.icon}>
