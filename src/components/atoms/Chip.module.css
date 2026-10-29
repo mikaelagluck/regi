@@ -1,0 +1,8 @@
+.group { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+.chip { position: relative; display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 var(--space-3); border-radius: var(--radius-pill); border: 1px solid var(--grey-3); background: var(--white); color: var(--ink); font-size: var(--text-label); font-weight: var(--weight-medium); white-space: nowrap; }
+/* 44px effective tap target without changing the visual size */
+.chip::after { content: ''; position: absolute; inset: -4px 0; }
+.chip:disabled { opacity: 0.4; }
+.selected { background: var(--ink); border-color: var(--ink); color: var(--on-ink); font-weight: var(--weight-semibold); }
+.removable { padding-right: 4px; min-height: 32px; }
+.remove { position: relative; z-index: 1; display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin: -2px 0; border-radius: 50%; color: inherit; }

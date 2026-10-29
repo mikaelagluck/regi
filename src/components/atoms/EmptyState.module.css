@@ -1,0 +1,6 @@
+.wrap { position: relative; display: flex; flex-direction: column; align-items: center; min-height: 60dvh; padding: 0 var(--gutter); }
+.content { position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; margin-top: 22dvh; }
+.icon { width: 64px; height: 64px; border-radius: 50%; background: var(--grey-1); border: 1px solid var(--grey-2); display: flex; align-items: center; justify-content: center; color: var(--ink); margin-bottom: var(--space-4); }
+.title { font-size: var(--text-headline); font-weight: var(--weight-medium); color: var(--ink); }
+.body { font-size: var(--text-label); color: var(--ink-tertiary); max-width: 240px; margin-top: 6px; line-height: 1.5; }
+.action { margin-top: var(--space-5); }

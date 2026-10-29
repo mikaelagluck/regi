@@ -1,0 +1,77 @@
+@import './tokens.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--white);
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100dvh;
+}
+
+img, svg, video { display: block; max-width: 100%; }
+button, input, textarea, select { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+
+:focus { outline: none; }
+:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: var(--radius-sm); }
+
+.sr-only {
+  position: absolute !important;
+  width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--space-2); top: -100px; z-index: 100;
+  background: var(--ink); color: var(--on-ink); padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+}
+.skip-link:focus { top: var(--space-2); }
+
+/* The app lives in a centred mobile column (CLAUDE.md: no desktop layout). */
+.app-column {
+  position: relative;
+  max-width: var(--app-max-width);
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--white);
+}
+@media (min-width: 520px) {
+  body { background: var(--grey-2); }
+  .app-column { box-shadow: var(--shadow-card); }
+}
+
+/* Typography helpers */
+.t-display { font-family: var(--font-display); font-style: italic; font-weight: var(--weight-display); font-size: var(--text-display); line-height: var(--leading-tight); letter-spacing: -0.01em; }
+.t-title { font-family: var(--font-display); font-style: italic; font-weight: var(--weight-display); font-size: var(--text-title); line-height: var(--leading-tight); letter-spacing: -0.01em; }
+.t-subhead { font-family: var(--font-display); font-style: italic; font-weight: var(--weight-semibold); font-size: var(--text-subhead); line-height: 1.3; }
+.t-headline { font-size: var(--text-headline); font-weight: var(--weight-medium); }
+.t-body { font-size: var(--text-body); }
+.t-secondary { color: var(--ink-tertiary); }
+.t-label { font-size: var(--text-label); }
+.t-caption { font-size: var(--text-caption); color: var(--ink-tertiary); }
+.t-overline { font-size: var(--text-micro); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-overline); text-transform: uppercase; color: var(--ink-tertiary); }
+.t-link { color: var(--blue); font-weight: var(--weight-medium); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

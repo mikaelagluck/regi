@@ -1,0 +1,7 @@
+.hit { position: relative; display: inline-flex; align-items: center; justify-content: center; width: var(--tap-min); height: var(--tap-min); flex-shrink: 0; margin: -10px; border-radius: var(--radius-sm); }
+.hit:disabled { cursor: default; opacity: 0.5; }
+.box { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 6px; border: 1.5px solid var(--ink-tertiary); background: var(--white); color: var(--on-pink); transition: background-color var(--dur-fast), border-color var(--dur-fast), transform var(--dur-fast) var(--ease-out); }
+.lg .box { width: 26px; height: 26px; }
+.checked { background: var(--pink); border-color: var(--pink); }
+.hit:active .box { transform: scale(0.9); }
+.retro { position: absolute; right: 6px; bottom: 6px; width: 14px; height: 14px; border-radius: 50%; background: var(--blue); color: var(--on-blue); display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid var(--white); }

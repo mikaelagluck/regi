@@ -1,0 +1,19 @@
+.row { position: relative; display: flex; align-items: center; gap: var(--space-3); min-height: 56px; padding: 6px var(--space-2) 6px var(--space-4); border-radius: var(--radius-md); background: var(--grey-1); border: 1px solid transparent; overflow: hidden; isolation: isolate; }
+.fill { position: absolute; inset: 0; z-index: -1; background: var(--pink-tint-strong); transform-origin: left center; will-change: transform; }
+.running { background: var(--white); border-color: var(--pink); }
+.active { background: var(--white); border-color: var(--pink); }
+.active .num { background: var(--pink); color: var(--on-pink); }
+.active .title { font-weight: var(--weight-semibold); }
+.done .main { opacity: 0.45; }
+.done .title { text-decoration: line-through; }
+.num { flex-shrink: 0; width: 26px; height: 26px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--grey-2); color: var(--ink-tertiary); font-size: var(--text-caption); font-weight: var(--weight-semibold); }
+.main { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; text-align: left; min-height: var(--tap-min); justify-content: center; padding: 4px 0; }
+.main:disabled { cursor: default; }
+.title { font-size: var(--text-body); font-weight: var(--weight-medium); color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.subtitle { font-size: var(--text-caption); color: var(--ink-tertiary); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 100%; }
+.running .subtitle { color: var(--ink); font-weight: var(--weight-medium); }
+.countdown { font-variant-numeric: tabular-nums; font-size: var(--text-headline); font-weight: var(--weight-semibold); color: var(--ink); padding-right: var(--space-2); }
+.chev { color: var(--ink-tertiary); flex-shrink: 0; margin-right: var(--space-1); }
+.more { flex-shrink: 0; width: var(--tap-min); height: var(--tap-min); display: inline-flex; align-items: center; justify-content: center; color: var(--ink-tertiary); border-radius: var(--radius-sm); margin: -6px 0; }
+.grip { flex-shrink: 0; width: 32px; height: var(--tap-min); display: inline-flex; align-items: center; justify-content: center; color: var(--ink-tertiary); cursor: grab; touch-action: none; margin-left: -8px; }
+.wait { display: flex; align-items: center; gap: 6px; margin: -2px 0 -2px 52px; padding: 4px 10px; font-size: var(--text-caption); color: var(--ink-tertiary); border-left: 2px dashed var(--grey-3); }

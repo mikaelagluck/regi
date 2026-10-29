@@ -1,0 +1,1 @@
+.main { padding-bottom: calc(var(--tabbar-height) + env(safe-area-inset-bottom) + var(--space-5)); min-height: 100dvh; }

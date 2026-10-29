@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regi — Wireframe Reference</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
+<style>
+:root {
+  --bg: #FAF7F2;
+  --surface: #FFFFFF;
+  --surface-2: #F5F0E8;
+  --text-primary: #2B2620;
+  --text-secondary: #6B6157;
+  --text-tertiary: #A39990;
+  --border: #E8DFD2;
+  --border-2: #D5C8B5;
+  --accent: #C2731A;
+  --danger: #B33E3E;
+  --success: #1F8050;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text-primary);
+  line-height: 1.5;
+  font-size: 14px;
+}
+.container { max-width: 1280px; margin: 0 auto; padding: 40px 24px; }
+header.doc-header { text-align: center; padding: 40px 24px 60px; border-bottom: 1px solid var(--border); margin-bottom: 40px; }
+header.doc-header h1 { margin: 0; font-size: 56px; font-weight: 500; letter-spacing: -0.02em; }
+header.doc-header .tagline { font-size: 18px; color: var(--text-secondary); margin-top: 12px; }
+header.doc-header .meta { font-size: 13px; color: var(--text-tertiary); margin-top: 24px; font-style: italic; }
+
+nav.toc { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 60px; }
+nav.toc h2 { margin: 0 0 16px; font-size: 14px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-secondary); }
+nav.toc ul { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 6px 24px; }
+nav.toc a { color: var(--text-primary); text-decoration: none; font-size: 13px; padding: 4px 0; display: block; }
+nav.toc a:hover { color: var(--accent); }
+nav.toc .ref-id { display: inline-block; font-family: "SF Mono", Menlo, monospace; font-size: 11px; color: var(--text-tertiary); margin-right: 8px; }
+
+section.feature-group { margin-bottom: 80px; }
+section.feature-group > h2 { font-size: 28px; font-weight: 500; margin: 0 0 8px; padding-bottom: 12px; border-bottom: 2px solid var(--border-2); }
+section.feature-group > .group-desc { color: var(--text-secondary); margin-bottom: 32px; font-size: 14px; max-width: 720px; }
+
+.screen-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 32px; }
+.screen { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; scroll-margin-top: 24px; }
+.screen-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 4px; }
+.screen-title { font-size: 15px; font-weight: 500; margin: 0; }
+.screen-id { font-family: "SF Mono", Menlo, monospace; font-size: 11px; color: var(--text-tertiary); }
+.screen-desc { font-size: 12px; color: var(--text-secondary); margin: 0 0 16px; line-height: 1.5; }
+
+.phone-frame { background: var(--surface-2); border-radius: 16px; padding: 12px; }
+.phone-screen { background: var(--surface); border-radius: 20px; border: 0.5px solid var(--border); overflow: hidden; position: relative; }
+.phone-screen.tall { min-height: 520px; }
+.phone-screen.taller { min-height: 600px; }
+.phone-screen.flex-col { display: flex; flex-direction: column; }
+
+.header { padding: 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); }
+.header-simple { padding: 12px 14px; }
+.header-calendar { padding: 14px; }
+
+.tabs { display: flex; gap: 6px; padding: 10px 14px; }
+.tab { flex: 1; padding: 8px 4px; text-align: center; border-radius: 8px; font-size: 11px; border: 0.5px solid var(--border); color: var(--text-secondary); }
+.tab.active { background: var(--text-primary); color: var(--surface); font-weight: 500; border-color: var(--text-primary); }
+
+.bold { font-weight: 500; }
+.muted { color: var(--text-secondary); }
+.tertiary { color: var(--text-tertiary); }
+.center { text-align: center; }
+.flex-1 { flex: 1; }
+.small { font-size: 11px; }
+.xs { font-size: 10px; }
+.tabular { font-variant-numeric: tabular-nums; }
+.strikethrough { text-decoration: line-through; color: var(--text-tertiary); }
+
+.section-divider { padding: 14px 14px 6px; border-top: 6px solid var(--surface-2); display: flex; align-items: center; justify-content: space-between; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary); }
+
+.checkbox { width: 18px; height: 18px; border-radius: 4px; border: 1.5px solid var(--text-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.checkbox.checked { background: var(--text-primary); color: var(--surface); }
+.checkbox.checked i { font-size: 12px; }
+
+.step-row { padding: 10px 14px; display: flex; align-items: center; gap: 10px; border-top: 0.5px solid var(--border); }
+.step-row.done { color: var(--text-tertiary); }
+.step-row.done .step-name { text-decoration: line-through; }
+.step-name { font-size: 12px; font-weight: 500; }
+.step-meta { font-size: 10px; color: var(--text-secondary); margin-top: 1px; }
+.step-num { width: 22px; height: 22px; background: var(--surface-2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 500; flex-shrink: 0; }
+
+.wait-strip { padding: 6px 14px 6px 38px; background: var(--surface-2); border-top: 0.5px solid var(--border); display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text-secondary); }
+
+.btn-primary { padding: 12px; text-align: center; background: var(--text-primary); color: var(--surface); border-radius: 8px; font-size: 13px; font-weight: 500; margin: 14px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-secondary { padding: 10px; text-align: center; border: 0.5px solid var(--border); border-radius: 8px; font-size: 12px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+
+.chip { padding: 6px 10px; border: 0.5px solid var(--border); border-radius: 14px; font-size: 11px; color: var(--text-secondary); display: inline-block; }
+.chip.active { background: var(--text-primary); color: var(--surface); border-color: var(--text-primary); font-weight: 500; }
+
+.streak-card { flex: 1; padding: 12px 10px; background: var(--surface-2); border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+.streak-num { font-size: 16px; font-weight: 500; line-height: 1; }
+.streak-label { font-size: 9px; color: var(--text-secondary); margin-top: 3px; line-height: 1.2; }
+
+.bottom-nav { border-top: 0.5px solid var(--border); display: grid; grid-template-columns: repeat(5, 1fr); padding: 10px 0 18px; }
+.nav-tab { text-align: center; padding: 4px 0; color: var(--text-secondary); }
+.nav-tab.active { color: var(--text-primary); }
+.nav-tab .icon { font-size: 22px; }
+.nav-tab .label { font-size: 10px; margin-top: 2px; }
+.nav-tab.active .label { font-weight: 500; }
+.nav-tab .today-bg { margin: 0 auto 4px; width: 44px; height: 44px; background: var(--surface-2); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+
+.product-card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; overflow: hidden; position: relative; }
+.product-image { aspect-ratio: 1; background: var(--surface-2); display: flex; align-items: center; justify-content: center; color: var(--text-tertiary); font-size: 22px; }
+.product-meta { padding: 8px; }
+.product-brand { font-size: 9px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; }
+.product-name { font-size: 11px; font-weight: 500; line-height: 1.3; margin: 2px 0 4px; }
+.stars { display: flex; gap: 2px; font-size: 10px; }
+.repurchase-badge { position: absolute; top: 6px; right: 6px; padding: 2px 6px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; font-size: 9px; color: var(--text-secondary); display: flex; align-items: center; gap: 3px; }
+
+.modal-bg-blur { filter: blur(2px); opacity: 0.4; }
+.modal-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.04); backdrop-filter: blur(2px); display: flex; align-items: flex-end; }
+.modal-sheet { background: var(--surface); border: 0.5px solid var(--border-2); width: calc(100% - 16px); margin: 0 8px 8px; border-radius: 12px; overflow: hidden; }
+.handle { display: flex; justify-content: center; padding: 8px 0; }
+.handle-bar { width: 36px; height: 4px; background: var(--border-2); border-radius: 2px; }
+
+.cell-stat { flex: 1; text-align: center; }
+.cell-stat .num { font-size: 14px; font-weight: 500; }
+.cell-stat .lbl { font-size: 9px; color: var(--text-secondary); margin-top: 2px; }
+.cell-divider { width: 1px; height: 24px; background: var(--border); }
+
+.note-italic { font-size: 11px; color: var(--text-secondary); font-style: italic; line-height: 1.5; }
+
+.input-field { padding: 10px; border: 0.5px solid var(--border); border-radius: 8px; font-size: 11px; color: var(--text-tertiary); }
+.input-field.filled { color: var(--text-primary); border-color: var(--text-primary); }
+
+.label-meta { font-size: 9px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 4px; }
+
+.empty-state-center { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; flex: 1; }
+.empty-icon-circle { width: 64px; height: 64px; background: var(--surface-2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; color: var(--text-secondary); font-size: 28px; }
+.empty-headline { font-size: 16px; font-weight: 500; }
+.empty-subhead { font-size: 12px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5; max-width: 240px; }
+.empty-cta { margin-top: 24px; padding: 10px 18px; background: var(--text-primary); color: var(--surface); border-radius: 8px; font-size: 12px; font-weight: 500; }
+
+.timer-row { position: relative; overflow: hidden; padding: 14px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--surface); }
+.timer-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--text-primary); opacity: 0.10; }
+
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+.calendar-cell { aspect-ratio: 1; padding: 4px 2px; text-align: center; border-radius: 5px; border: 0.5px solid var(--border); }
+.calendar-cell.faded { opacity: 0.3; border: none; }
+.calendar-cell.future { border: 0.5px dashed var(--border-2); opacity: 0.5; }
+.calendar-cell.today { background: var(--text-primary); color: var(--surface); }
+.calendar-cell .num { font-size: 10px; }
+.calendar-cell .dots { margin-top: 2px; display: flex; gap: 1.5px; justify-content: center; }
+.dot { width: 5px; height: 5px; border-radius: 50%; background: var(--text-primary); flex-shrink: 0; }
+.dot.partial { background: linear-gradient(to top, var(--text-primary) 50%, transparent 50%); }
+.dot.skipped { background: transparent; border: 0.5px solid var(--text-tertiary); position: relative; overflow: hidden; }
+.dot.skipped::after { content: ''; position: absolute; left: -1px; top: 1.5px; width: 7px; height: 0.5px; background: var(--text-tertiary); transform: rotate(45deg); transform-origin: center; }
+.dot.no-data { background: transparent; border: 0.5px solid var(--border-2); }
+.dot.today-dot { background: var(--surface); }
+.dot.no-data.today-dot { background: transparent; border-color: rgba(255,255,255,0.4); }
+
+.cal-grid-mini { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+.cal-cell-mini { font-size: 10px; text-align: center; padding: 4px; }
+.cal-cell-mini.faded { opacity: 0.4; }
+.cal-cell-mini.selected { background: var(--text-primary); color: var(--surface); font-weight: 500; }
+.cal-cell-mini.selected.start { border-radius: 4px 0 0 4px; }
+.cal-cell-mini.selected.end { border-radius: 0 4px 4px 0; }
+
+.weekday-row { padding: 10px; display: flex; align-items: center; gap: 10px; background: var(--surface); border: 0.5px solid var(--border); border-radius: 8px; }
+.weekday-row.selected { border-color: var(--text-primary); }
+.weekday-circle { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 10px; background: var(--surface-2); color: var(--text-secondary); }
+.weekday-circle.selected { background: var(--text-primary); color: var(--surface); font-weight: 500; }
+
+.row-padded { padding: 12px 14px; border-top: 0.5px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.chevron-row { justify-content: space-between; }
+
+.scaffold-row { padding: 12px; border: 1px dashed var(--border-2); border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+.scaffold-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2); display: flex; align-items: center; justify-content: center; }
+
+.selected-product { padding: 10px; border: 0.5px solid var(--text-primary); border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+.product-thumb { width: 36px; height: 36px; background: var(--surface-2); border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+
+.radio { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid var(--border-2); flex-shrink: 0; }
+.radio.dot { border-color: var(--text-primary); position: relative; }
+.radio.dot::after { content: ''; position: absolute; left: 2px; top: 2px; width: 8px; height: 8px; border-radius: 50%; background: var(--text-primary); }
+
+.radio-option { padding: 12px; border: 0.5px solid var(--border); border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+.radio-option.selected { border-color: var(--text-primary); background: var(--surface); }
+.radio-option-padded { padding: 12px 18px; border-top: 0.5px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.radio-option-padded.selected { background: var(--surface-2); }
+
+.toggle { width: 36px; height: 22px; border-radius: 11px; position: relative; flex-shrink: 0; }
+.toggle.on { background: var(--text-primary); }
+.toggle.on .toggle-knob { right: 2px; }
+.toggle.off { background: var(--surface-2); border: 0.5px solid var(--border); }
+.toggle.off .toggle-knob { left: 2px; border: 0.5px solid var(--border); }
+.toggle-knob { position: absolute; top: 2px; width: 18px; height: 18px; background: var(--surface); border-radius: 50%; }
+
+.toggle-row { padding: 14px; border-top: 0.5px solid var(--border); display: flex; align-items: center; gap: 12px; }
+
+.progress-track { height: 4px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
+.progress-fill { height: 100%; background: var(--text-primary); border-radius: 2px; }
+
+.share-step { padding: 12px 14px; border-bottom: 0.5px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.share-action { padding: 5px 10px; border: 0.5px solid var(--border); border-radius: 12px; font-size: 10px; display: flex; align-items: center; gap: 4px; color: var(--text-secondary); }
+
+.day-card-mini { flex: 1; padding: 8px; background: var(--surface); border-radius: 6px; border: 0.5px solid var(--border); }
+.day-card-mini-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+
+.status-pill { font-size: 10px; padding: 3px 8px; background: var(--surface-2); border-radius: 10px; color: var(--text-secondary); }
+.status-pill.outlined { background: transparent; border: 0.5px solid var(--border); }
+
+.date-pill { margin-left: 4px; padding: 1px 6px; background: var(--surface-2); border-radius: 8px; font-size: 9px; font-weight: 400; color: var(--text-secondary); vertical-align: 1px; }
+
+.annotation { margin-top: 12px; font-size: 11px; color: var(--text-secondary); line-height: 1.5; padding: 12px; background: var(--surface); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; }
+
+i { font-style: normal; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header class="doc-header">
+  <h1>Regi</h1>
+  <div class="tagline">Wireframe Reference — v1 Specification</div>
+  <div class="meta">Companion to Regi PRD v3.0. Each screen has a reference ID matching Part B of the PRD.</div>
+</header>
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ul>
+    <li><a href="#nav-01"><span class="ref-id">nav-01</span> Bottom Navigation</a></li>
+    <li><a href="#signup-01"><span class="ref-id">signup-01</span> Welcome / Auth</a></li>
+    <li><a href="#signup-02"><span class="ref-id">signup-02</span> Pick Username</a></li>
+    <li><a href="#empty-today"><span class="ref-id">empty-today</span> Today (empty)</a></li>
+    <li><a href="#empty-products"><span class="ref-id">empty-products</span> Products (empty)</a></li>
+    <li><a href="#empty-calendar"><span class="ref-id">empty-calendar</span> Calendar (empty)</a></li>
+    <li><a href="#today-01"><span class="ref-id">today-01</span> Today screen</a></li>
+    <li><a href="#timer-states"><span class="ref-id">timer-states</span> Wait timer states</a></li>
+    <li><a href="#success-moment"><span class="ref-id">success-moment</span> Regimen complete moment</a></li>
+    <li><a href="#products-01"><span class="ref-id">products-01</span> Products tab</a></li>
+    <li><a href="#products-filter"><span class="ref-id">products-filter</span> Filter sheet</a></li>
+    <li><a href="#empty-product-modal"><span class="ref-id">empty-product-modal</span> Empty product modal</a></li>
+    <li><a href="#product-detail"><span class="ref-id">product-detail</span> Product detail</a></li>
+    <li><a href="#regimens-01"><span class="ref-id">regimens-01</span> Regimens list</a></li>
+    <li><a href="#regimen-detail"><span class="ref-id">regimen-detail</span> Regimen detail</a></li>
+    <li><a href="#regimen-builder-empty"><span class="ref-id">regimen-builder-empty</span> Builder — empty</a></li>
+    <li><a href="#regimen-builder-01"><span class="ref-id">regimen-builder-01</span> Builder — Step 1</a></li>
+    <li><a href="#step-editor"><span class="ref-id">step-editor</span> Step editor</a></li>
+    <li><a href="#regimen-builder-schedule-recurring"><span class="ref-id">regimen-builder-schedule-recurring</span> Schedule (recurring)</a></li>
+    <li><a href="#regimen-builder-schedule-range"><span class="ref-id">regimen-builder-schedule-range</span> Schedule (date range)</a></li>
+    <li><a href="#edit-scope"><span class="ref-id">edit-scope</span> Edit-scope dialog</a></li>
+    <li><a href="#calendar-month"><span class="ref-id">calendar-month</span> Calendar month view</a></li>
+    <li><a href="#share-create"><span class="ref-id">share-create</span> Share creation</a></li>
+    <li><a href="#share-view"><span class="ref-id">share-view</span> Share view (recipient)</a></li>
+    <li><a href="#profile-01"><span class="ref-id">profile-01</span> Profile</a></li>
+    <li><a href="#my-shares"><span class="ref-id">my-shares</span> My Shares dashboard</a></li>
+    <li><a href="#notifications"><span class="ref-id">notifications</span> Notifications</a></li>
+  </ul>
+</nav>
+
+
+<section class="feature-group">
+  <h2>Navigation</h2>
+  <p class="group-desc">Bottom nav with 5 tabs.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="nav-01">
+  <div class="screen-header">
+    <h3 class="screen-title">Bottom navigation</h3>
+    <span class="screen-id">nav-01</span>
+  </div>
+  <p class="screen-desc">5 tabs. Today center and prominent. Subtle filled-circle treatment.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header">
+  <span class="muted">‹</span>
+  <div class="center"><div class="muted small">Today</div><div class="bold">Thu, May 7</div></div>
+  <span class="muted">›</span>
+</div>
+    <div style="padding: 200px 14px; text-align: center;" class="tertiary">[ screen content ]</div>
+    <div class="bottom-nav">
+      <div class="nav-tab"><div class="icon"><i class="ti ti-bottle"></i></div><div class="label">Products</div></div>
+      <div class="nav-tab"><div class="icon"><i class="ti ti-list-check"></i></div><div class="label">Regimens</div></div>
+      <div class="nav-tab today-active active">
+        <div class="today-bg"><i class="ti ti-checkbox" style="font-size: 22px;"></i></div>
+        <div class="label">Today</div>
+      </div>
+      <div class="nav-tab"><div class="icon"><i class="ti ti-calendar-month"></i></div><div class="label">Calendar</div></div>
+      <div class="nav-tab"><div class="icon"><i class="ti ti-user"></i></div><div class="label">Profile</div></div>
+    </div>
+  </div>
+</div>
+  <div class="annotation">Order: Products, Regimens, Today (raised), Calendar, Profile. App always opens to Today.</div>
+</div>
+  </div>
+</section>
+
+
+<section class="feature-group">
+  <h2>Authentication & Onboarding</h2>
+  <p class="group-desc">Two sign-up screens, then drop into empty states. No tutorial.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="signup-01">
+  <div class="screen-header">
+    <h3 class="screen-title">Welcome / Auth</h3>
+    <span class="screen-id">signup-01</span>
+  </div>
+  <p class="screen-desc">Three auth options. Apple first per App Store rules.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall flex-col">
+    <div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px 24px 0;">
+      <div style="font-size: 32px; font-weight: 500; letter-spacing: -0.02em;">Regi</div>
+      <div class="muted small" style="margin-top: 8px; text-align: center; max-width: 240px; line-height: 1.4;">Track your regimens. Keep your streak. Share what works.</div>
+    </div>
+    <div style="padding: 20px 24px 32px; display: flex; flex-direction: column; gap: 8px;">
+      <div class="btn-primary" style="margin: 0;"><i class="ti ti-brand-apple-filled"></i> Continue with Apple</div>
+      <div class="btn-secondary"><i class="ti ti-brand-google"></i> Continue with Google</div>
+      <div class="btn-secondary"><i class="ti ti-mail"></i> Continue with email</div>
+      <div class="tertiary" style="margin-top: 14px; font-size: 10px; text-align: center; line-height: 1.5;">By continuing you agree to our <u>Terms</u> and <u>Privacy Policy</u>.</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="signup-02">
+  <div class="screen-header">
+    <h3 class="screen-title">Pick username</h3>
+    <span class="screen-id">signup-02</span>
+  </div>
+  <p class="screen-desc">Username + optional display name. Username NOT editable post-signup.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall">
+    
+<div class="header header-simple">
+  <span class="muted small">‹</span>
+  <div class="bold"></div>
+  <span class="muted small">Step 2 of 2</span>
+</div>
+    <div style="padding: 32px 24px 20px;">
+      <div style="font-size: 22px; font-weight: 500; line-height: 1.3;">Pick a username</div>
+      <div class="muted small" style="margin-top: 8px; line-height: 1.5;">This is how you'll appear when you share regimens. You can't change it later.</div>
+    </div>
+    <div style="padding: 0 24px;">
+      <div class="input-field filled" style="display: flex; align-items: center; gap: 6px; padding: 14px;">
+        <span class="muted">@</span><span class="bold">sarahskincare</span>
+      </div>
+      <div style="margin-top: 8px; font-size: 11px; color: var(--success); display: flex; align-items: center; gap: 4px;"><i class="ti ti-check"></i> Available</div>
+    </div>
+    <div style="padding: 24px 24px 0;">
+      <div class="label-meta">Display name (optional)</div>
+      <div class="input-field">Sarah Mitchell</div>
+    </div>
+    <div style="padding: 32px 24px;"><div class="btn-primary" style="margin: 0;">Continue</div></div>
+  </div>
+</div>
+  
+</div>
+  </div>
+</section>
+
+
+<section class="feature-group">
+  <h2>First-Run Empty States</h2>
+  <p class="group-desc">Each tab teaches itself.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="empty-today">
+  <div class="screen-header">
+    <h3 class="screen-title">Today (empty state)</h3>
+    <span class="screen-id">empty-today</span>
+  </div>
+  <p class="screen-desc">"No regimens yet" with single CTA.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall flex-col">
+    
+<div class="header">
+  <span class="muted">‹</span>
+  <div class="center"><div class="muted small">Today</div><div class="bold">Thu, May 7</div></div>
+  <span class="muted">›</span>
+</div>
+    
+  <div class="empty-state-center">
+    <div class="empty-icon-circle"><i class="ti ti-checkbox"></i></div>
+    <div class="empty-headline">No regimens yet</div>
+    <div class="empty-subhead">Set up a regimen and it'll show up here every morning and night.</div>
+    <div class="empty-cta">Create a regimen</div>
+  </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="empty-products">
+  <div class="screen-header">
+    <h3 class="screen-title">Products (empty state)</h3>
+    <span class="screen-id">empty-products</span>
+  </div>
+  <p class="screen-desc">Tabs visible (all 0). Add product CTA.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall flex-col">
+    
+<div class="header header-simple">
+  <div style="font-size: 16px; font-weight: 500;">Products</div>
+  <i class="ti ti-plus"></i>
+</div>
+    
+<div class="tabs">
+  <div class="tab active">Using 0</div><div class="tab ">Empty 0</div><div class="tab ">Wishlist 0</div>
+</div>
+    
+  <div class="empty-state-center">
+    <div class="empty-icon-circle"><i class="ti ti-bottle"></i></div>
+    <div class="empty-headline">Add your first product</div>
+    <div class="empty-subhead">Anything you use — cleansers, serums, SPF, masks, tools.</div>
+    <div class="empty-cta">Add product</div>
+  </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="empty-calendar">
+  <div class="screen-header">
+    <h3 class="screen-title">Calendar (empty state)</h3>
+    <span class="screen-id">empty-calendar</span>
+  </div>
+  <p class="screen-desc">"Your history starts now." Faded scaffold.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall flex-col">
+    
+<div class="header">
+  <span class="muted">‹</span>
+  <div class="center"><div class="muted small">May 2026</div><div class="bold">Calendar</div></div>
+  <span class="muted">›</span>
+</div>
+    <div style="padding: 14px; opacity: 0.4;">
+      <div class="calendar-grid" style="padding: 0;">
+        <div class="tertiary small" style="text-align: center;">M</div><div class="tertiary small" style="text-align: center;">T</div><div class="tertiary small" style="text-align: center;">W</div><div class="tertiary small" style="text-align: center;">T</div><div class="tertiary small" style="text-align: center;">F</div><div class="tertiary small" style="text-align: center;">S</div><div class="tertiary small" style="text-align: center;">S</div>
+        <div class="calendar-cell future"></div><div class="calendar-cell future"></div><div class="calendar-cell future"></div><div class="calendar-cell future"></div><div class="calendar-cell future"></div><div class="calendar-cell future"></div><div class="calendar-cell future"></div>
+      </div>
+    </div>
+    <div style="padding: 12px 24px 24px; text-align: center;">
+      <div class="bold">Your history starts now</div>
+      <div class="muted small" style="margin-top: 6px; line-height: 1.5; max-width: 240px; margin-left: auto; margin-right: auto;">Log your regimens for a few days and you'll see your patterns here.</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+  </div>
+</section>
+
+
+<section class="feature-group">
+  <h2>Today Screen</h2>
+  <p class="group-desc">Primary daily surface. Streaks, regimen pills, progress, step list, wait timer.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="today-01">
+  <div class="screen-header">
+    <h3 class="screen-title">Today screen</h3>
+    <span class="screen-id">today-01</span>
+  </div>
+  <p class="screen-desc">Both streaks (small treatment), regimen pills, progress bar, step list.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header">
+  <span class="muted">‹</span>
+  <div class="center"><div class="muted small">Today</div><div class="bold">Thu, May 7</div></div>
+  <span class="muted">›</span>
+</div>
+    <div style="padding: 14px; display: flex; gap: 8px;">
+      <div class="streak-card">
+        <i class="ti ti-flame" style="font-size: 22px; color: var(--accent);"></i>
+        <div><div class="streak-num">12</div><div class="streak-label">Perfect day streak</div></div>
+      </div>
+      <div class="streak-card">
+        <i class="ti ti-circle-check" style="font-size: 22px; color: var(--text-secondary);"></i>
+        <div><div class="streak-num">347</div><div class="streak-label">Regimens completed</div></div>
+      </div>
+    </div>
+    <div style="padding: 0 14px 10px; display: flex; gap: 6px;">
+      <div class="tab active"><i class="ti ti-sun"></i> Morning</div>
+      <div class="tab"><i class="ti ti-moon"></i> Evening</div>
+    </div>
+    <div style="padding: 0 14px 10px;">
+      <div style="display: flex; justify-content: space-between; font-size: 10px; margin-bottom: 4px;" class="tertiary"><span>3 of 4 done</span><span>75%</span></div>
+      <div class="progress-track"><div class="progress-fill" style="width: 75%;"></div></div>
+    </div>
+    <div style="padding: 4px 14px 14px;">
+      
+<div class="step-row done">
+  <div class="checkbox checked"><i class="ti ti-check"></i></div>
+  <div class="flex-1">
+    <div class="step-name">Gentle Cleanser</div>
+    
+  </div>
+  
+</div>
+      
+<div class="step-row done">
+  <div class="checkbox checked"><i class="ti ti-check"></i></div>
+  <div class="flex-1">
+    <div class="step-name">Vitamin C Serum</div>
+    
+  </div>
+  
+</div>
+      
+<div class="step-row done">
+  <div class="checkbox checked"><i class="ti ti-check"></i></div>
+  <div class="flex-1">
+    <div class="step-name">Moisturizer</div>
+    
+  </div>
+  
+</div>
+      <div style="background: var(--surface-2); border-radius: 6px; margin-top: 4px;">
+        
+<div class="step-row ">
+  <div class="checkbox"></div>
+  <div class="flex-1">
+    <div class="step-name">SPF 50</div>
+    
+  </div>
+  
+</div>
+      </div>
+    </div>
+    <div style="padding: 10px 14px; border-top: 0.5px solid var(--border); font-size: 11px; color: var(--text-tertiary);">
+      <i class="ti ti-edit"></i> Add today's note
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="timer-states">
+  <div class="screen-header">
+    <h3 class="screen-title">Wait timer states</h3>
+    <span class="screen-id">timer-states</span>
+  </div>
+  <p class="screen-desc">Progressive fill animation. Same step, three moments.</p>
+  <div style="display: flex; flex-direction: column; gap: 14px;">
+    <div>
+      <div class="muted small" style="margin-bottom: 6px;">0:01 elapsed (just tapped)</div>
+      <div class="timer-row">
+        <div class="timer-fill" style="width: 1%;"></div>
+        <div style="position: relative; display: flex; align-items: center; gap: 10px;">
+          <div class="checkbox"></div>
+          <div class="flex-1"><div class="step-name">Vitamin C Serum</div><div class="step-meta">Wait 4:59 before Moisturizer</div></div>
+          <div class="bold tabular">4:59</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="muted small" style="margin-bottom: 6px;">2:30 elapsed (halfway)</div>
+      <div class="timer-row">
+        <div class="timer-fill" style="width: 50%;"></div>
+        <div style="position: relative; display: flex; align-items: center; gap: 10px;">
+          <div class="checkbox"></div>
+          <div class="flex-1"><div class="step-name">Vitamin C Serum</div><div class="step-meta">Wait 2:30 before Moisturizer</div></div>
+          <div class="bold tabular">2:30</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="muted small" style="margin-bottom: 6px;">5:00 elapsed (auto-checked)</div>
+      <div class="timer-row" style="background: var(--surface-2);">
+        <div style="position: relative; display: flex; align-items: center; gap: 10px;">
+          <div class="checkbox checked"><i class="ti ti-check"></i></div>
+          <div class="flex-1"><div class="step-name strikethrough">Vitamin C Serum</div></div>
+          <div class="tertiary"><i class="ti ti-check"></i></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="annotation">CSS animation driven by timer_started_at. Backgrounding the app and reopening shows the bar at the correct position. Push notification fires at completion.</div>
+</div>
+
+<div class="screen" id="success-moment">
+  <div class="screen-header">
+    <h3 class="screen-title">Regimen complete moment</h3>
+    <span class="screen-id">success-moment</span>
+  </div>
+  <p class="screen-desc">1.5s celebration. Both streaks tick up.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall">
+    <svg viewBox="0 0 380 580" style="position: absolute; inset: 0; pointer-events: none;">
+      <circle cx="60" cy="80" r="3" fill="#C2731A" opacity="0.6"/>
+      <circle cx="320" cy="120" r="2" fill="#8B6F47" opacity="0.5"/>
+      <circle cx="120" cy="60" r="2.5" fill="#C2731A" opacity="0.7"/>
+      <circle cx="280" cy="220" r="2" fill="#8B6F47" opacity="0.5"/>
+      <circle cx="50" cy="200" r="2" fill="#C2731A" opacity="0.5"/>
+      <circle cx="340" cy="60" r="3" fill="#C2731A" opacity="0.5"/>
+      <circle cx="200" cy="40" r="2" fill="#8B6F47" opacity="0.6"/>
+      <circle cx="80" cy="320" r="2.5" fill="#C2731A" opacity="0.4"/>
+      <circle cx="310" cy="290" r="2" fill="#8B6F47" opacity="0.5"/>
+    </svg>
+    <div style="position: relative; padding: 80px 24px 0; text-align: center;">
+      <div style="margin: 0 auto 24px; width: 100px; height: 100px; border-radius: 50%; background: var(--text-primary); display: flex; align-items: center; justify-content: center;">
+        <i class="ti ti-check" style="font-size: 48px; color: var(--surface);"></i>
+      </div>
+      <div class="muted small" style="text-transform: uppercase; letter-spacing: 0.06em;">Morning complete</div>
+      <div class="bold" style="font-size: 22px; margin-top: 6px;">Day 13.</div>
+      <div style="margin-top: 32px; display: flex; gap: 10px; justify-content: center;">
+        <div style="padding: 14px 18px; background: var(--surface-2); border-radius: 8px; display: flex; align-items: center; gap: 10px;">
+          <i class="ti ti-flame" style="font-size: 22px; color: var(--accent);"></i>
+          <div><div class="streak-num">13</div><div class="streak-label">+1 today</div></div>
+        </div>
+        <div style="padding: 14px 18px; background: var(--surface-2); border-radius: 8px; display: flex; align-items: center; gap: 10px;">
+          <i class="ti ti-circle-check" style="font-size: 22px; color: var(--text-secondary);"></i>
+          <div><div class="streak-num">348</div><div class="streak-label">+1 today</div></div>
+        </div>
+      </div>
+      <div class="tertiary small" style="margin-top: 40px;">Tap to dismiss</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+  </div>
+</section>
+
+
+<section class="feature-group">
+  <h2>Products</h2>
+  <p class="group-desc">User's product library. Three states. Card grid with filtering.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="products-01">
+  <div class="screen-header">
+    <h3 class="screen-title">Products tab</h3>
+    <span class="screen-id">products-01</span>
+  </div>
+  <p class="screen-desc">Using state with Treat filter active.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <div style="font-size: 16px; font-weight: 500;">Products</div>
+  <i class="ti ti-plus"></i>
+</div>
+    
+<div class="tabs">
+  <div class="tab active">Using 12</div><div class="tab ">Empty 23</div><div class="tab ">Wishlist 5</div>
+</div>
+    <div style="padding: 4px 14px 10px; display: flex; align-items: center; gap: 8px;">
+      <div class="chip"><i class="ti ti-adjustments-horizontal"></i> Filter</div>
+      <div style="padding: 6px 10px; background: var(--surface-2); border-radius: 14px; font-size: 11px; display: inline-flex; align-items: center; gap: 4px;">Treat <i class="ti ti-x"></i></div>
+      <div class="tertiary" style="margin-left: auto; font-size: 11px;">Sort <i class="ti ti-chevron-down"></i></div>
+    </div>
+    <div style="padding: 0 14px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+      
+<div class="product-card">
+  
+  <div class="product-image"><i class="ti ti-photo"></i></div>
+  <div class="product-meta">
+    <div class="product-brand">SkinCeuticals</div>
+    <div class="product-name">CE Ferulic Vitamin C</div>
+    <div class="stars">
+      <i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star tertiary"></i>
+    </div>
+  </div>
+</div>
+      
+<div class="product-card">
+  
+  <div class="product-image"><i class="ti ti-photo"></i></div>
+  <div class="product-meta">
+    <div class="product-brand">The Ordinary</div>
+    <div class="product-name">Niacinamide 10%</div>
+    <div class="stars">
+      <i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star tertiary"></i><i class="ti ti-star tertiary"></i>
+    </div>
+  </div>
+</div>
+      
+<div class="product-card">
+  <div class="repurchase-badge"><i class="ti ti-refresh"></i> 3rd</div>
+  <div class="product-image"><i class="ti ti-photo"></i></div>
+  <div class="product-meta">
+    <div class="product-brand">Paula's Choice</div>
+    <div class="product-name">2% BHA Liquid Exfoliant</div>
+    <div class="stars">
+      <i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i>
+    </div>
+  </div>
+</div>
+      
+<div class="product-card">
+  
+  <div class="product-image"><i class="ti ti-photo"></i></div>
+  <div class="product-meta">
+    <div class="product-brand">La Roche-Posay</div>
+    <div class="product-name">Effaclar Duo+</div>
+    <div class="stars">
+      <i class="ti ti-star tertiary"></i><i class="ti ti-star tertiary"></i><i class="ti ti-star tertiary"></i><i class="ti ti-star tertiary"></i><i class="ti ti-star tertiary"></i>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="products-filter">
+  <div class="screen-header">
+    <h3 class="screen-title">Filter sheet</h3>
+    <span class="screen-id">products-filter</span>
+  </div>
+  <p class="screen-desc">Bottom sheet. Multi-dimension filtering with cross-state toggle.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall">
+    <div class="modal-bg-blur">
+      
+<div class="header header-simple">
+  <div style="font-size: 16px; font-weight: 500;">Products</div>
+  <i class="ti ti-plus"></i>
+</div>
+      
+<div class="tabs">
+  <div class="tab active">Using</div><div class="tab ">Empty</div><div class="tab ">Wishlist</div>
+</div>
+    </div>
+    <div class="modal-overlay">
+      <div class="modal-sheet">
+        <div class="handle"><div class="handle-bar"></div></div>
+        <div style="padding: 4px 18px 12px; display: flex; align-items: center; justify-content: space-between;">
+          <div class="bold">Filter</div>
+          <div class="muted small">Reset</div>
+        </div>
+        <div style="padding: 12px 18px; border-top: 0.5px solid var(--border);">
+          <div class="label-meta">Step type</div>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <div class="chip">Cleanse</div>
+            <div class="chip active">Treat ✓</div>
+            <div class="chip">Moisturize</div>
+            <div class="chip">Protect</div>
+            <div class="chip">Mask</div>
+          </div>
+        </div>
+        <div class="row-padded chevron-row">
+          <div><div class="label-meta">Category</div><div class="small">All categories</div></div>
+          <i class="ti ti-chevron-right tertiary"></i>
+        </div>
+        <div class="row-padded chevron-row">
+          <div><div class="label-meta">Brand</div><div class="small">All brands</div></div>
+          <i class="ti ti-chevron-right tertiary"></i>
+        </div>
+        <div class="row-padded chevron-row">
+          <div><div class="label-meta">In regimen</div><div class="small">Any regimen</div></div>
+          <i class="ti ti-chevron-right tertiary"></i>
+        </div>
+        <div style="padding: 12px 18px; border-top: 0.5px solid var(--border);">
+          <div class="label-meta">Rating</div>
+          <div style="display: flex; gap: 4px;">
+            <div class="chip">Any</div><div class="chip">3+</div><div class="chip">4+</div><div class="chip">5</div>
+          </div>
+        </div>
+        <div style="padding: 12px 18px; border-top: 0.5px solid var(--border); display: flex; align-items: center; gap: 10px;">
+          <div class="flex-1 small">Show across all states</div>
+          <div class="toggle off"><div class="toggle-knob"></div></div>
+        </div>
+        <div style="padding: 14px 18px; border-top: 0.5px solid var(--border);">
+          <div class="btn-primary" style="margin: 0;">Show 8 results</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="empty-product-modal">
+  <div class="screen-header">
+    <h3 class="screen-title">Empty product modal</h3>
+    <span class="screen-id">empty-product-modal</span>
+  </div>
+  <p class="screen-desc">Triggered on state → empty. Reflection + intent setting.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen taller">
+    <div class="modal-bg-blur">
+      
+<div class="header header-simple">
+  <div style="font-size: 16px; font-weight: 500;">Products</div>
+  <i class="ti ti-plus"></i>
+</div>
+      <div style="padding: 12px 14px;" class="tertiary small">[products]</div>
+    </div>
+    <div class="modal-overlay">
+      <div class="modal-sheet">
+        <div class="handle"><div class="handle-bar"></div></div>
+        <div style="padding: 4px 18px 16px; text-align: center;">
+          <div class="muted" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em;">Finished it!</div>
+          <div class="bold" style="font-size: 16px; margin-top: 4px;">Paula's Choice 2% BHA</div>
+          <div class="muted small" style="margin-top: 4px;">Used Mar 14 — May 7 · 54 days</div>
+          <div style="margin-top: 8px; padding: 4px 10px; background: var(--surface-2); border-radius: 12px; font-size: 11px; display: inline-flex; align-items: center; gap: 4px;"><i class="ti ti-refresh"></i> Your 3rd jar</div>
+        </div>
+        <div style="padding: 14px 18px; border-top: 0.5px solid var(--border);">
+          <div class="bold small" style="margin-bottom: 8px;">Rate it</div>
+          <div style="display: flex; gap: 6px;">
+            <i class="ti ti-star-filled" style="font-size: 26px;"></i><i class="ti ti-star-filled" style="font-size: 26px;"></i><i class="ti ti-star-filled" style="font-size: 26px;"></i><i class="ti ti-star-filled" style="font-size: 26px;"></i><i class="ti ti-star-filled" style="font-size: 26px;"></i>
+          </div>
+        </div>
+        <div style="padding: 14px 18px; border-top: 0.5px solid var(--border);">
+          <div class="bold small" style="margin-bottom: 8px;">Final thoughts <span class="tertiary" style="font-weight: 400;">(optional)</span></div>
+          <div class="input-field" style="min-height: 52px;">Best exfoliant I've tried.</div>
+        </div>
+        <div style="padding: 14px 18px; border-top: 0.5px solid var(--border);">
+          <div class="bold small" style="margin-bottom: 8px;">What's next?</div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div class="radio-option selected">
+              <div class="radio dot"></div>
+              <div class="flex-1 bold small">Repurchasing</div>
+            </div>
+            <div class="radio-option">
+              <div class="radio"></div>
+              <div class="flex-1 bold small">Trying something else</div>
+            </div>
+            <div class="radio-option">
+              <div class="radio"></div>
+              <div class="flex-1 bold small">Just done</div>
+            </div>
+          </div>
+        </div>
+        <div style="padding: 14px 18px; border-top: 0.5px solid var(--border); display: flex; gap: 8px;">
+          <div class="btn-secondary flex-1">Skip</div>
+          <div class="btn-primary flex-1" style="margin: 0;">Save</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="product-detail">
+  <div class="screen-header">
+    <h3 class="screen-title">Product detail</h3>
+    <span class="screen-id">product-detail</span>
+  </div>
+  <p class="screen-desc">Hero + lifecycle strip + notes + regimens + buy link + actions.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Back</span>
+  <div class="bold"></div>
+  <span class="muted small">Edit</span>
+</div>
+    <div style="padding: 24px 14px;">
+      <div style="display: flex; gap: 14px; align-items: flex-start;">
+        <div style="width: 100px; height: 100px; background: var(--surface-2); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <i class="ti ti-photo tertiary" style="font-size: 28px;"></i>
+        </div>
+        <div class="flex-1">
+          <div class="product-brand">SkinCeuticals</div>
+          <div style="font-size: 16px; font-weight: 500; line-height: 1.3; margin: 4px 0;">CE Ferulic Vitamin C</div>
+          <div class="muted small" style="margin-top: 4px;">Vitamin C serum · Treat</div>
+          <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
+            <div style="padding: 3px 8px; background: var(--surface-2); border-radius: 10px; font-size: 10px;"><i class="ti ti-circle-dot"></i> Using</div>
+            <div class="stars">
+              <i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star-filled"></i><i class="ti ti-star tertiary"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="padding: 14px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-around; background: var(--surface-2);">
+      <div class="cell-stat"><div class="num">Apr 12</div><div class="lbl">Started</div></div>
+      <div class="cell-divider"></div>
+      <div class="cell-stat"><div class="num">25</div><div class="lbl">Days in</div></div>
+      <div class="cell-divider"></div>
+      <div class="cell-stat"><div class="num">2nd</div><div class="lbl">Bottle</div></div>
+    </div>
+    <div style="padding: 14px; border-top: 0.5px solid var(--border);">
+      <div class="label-meta">Notes</div>
+      <div class="small" style="line-height: 1.5;">Holy grail. Apply 3–4 drops on damp skin. Avoid layering with niacinamide.</div>
+    </div>
+    <div style="padding: 14px 14px 6px; border-top: 0.5px solid var(--border);">
+      <div class="label-meta">In regimens</div>
+    </div>
+    <div class="row-padded">
+      <i class="ti ti-sun muted"></i>
+      <div class="flex-1 small">Daily Morning</div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    <div class="row-padded">
+      <i class="ti ti-sun muted"></i>
+      <div class="flex-1 small">Tret Mornings</div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    <div style="padding: 14px; border-top: 6px solid var(--surface-2); display: flex; align-items: center; gap: 12px;">
+      <i class="ti ti-link muted"></i>
+      <div class="flex-1"><div class="small">Where I buy it</div><div class="muted small">skinceuticals.com/...</div></div>
+      <i class="ti ti-external-link muted"></i>
+    </div>
+    <div style="padding: 14px; border-top: 0.5px solid var(--border); display: flex; gap: 8px;">
+      <div class="btn-secondary flex-1"><i class="ti ti-share"></i> Share</div>
+      <div class="btn-secondary flex-1"><i class="ti ti-circle-dashed"></i> Mark empty</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+  </div>
+</section>
+
+
+<section class="feature-group">
+  <h2>Regimens</h2>
+  <p class="group-desc">List grouped by time of day. Detail with sticky action footer. Two-step builder.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="regimens-01">
+  <div class="screen-header">
+    <h3 class="screen-title">Regimens list</h3>
+    <span class="screen-id">regimens-01</span>
+  </div>
+  <p class="screen-desc">Grouped by Morning / Evening (empty groups hidden).</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <div style="font-size: 16px; font-weight: 500;">Regimens</div>
+  <i class="ti ti-plus"></i>
+</div>
+    
+<div class="tabs">
+  <div class="tab active"><i class="ti ti-user"></i> Mine 4</div><div class="tab "><i class="ti ti-users"></i> Shared 2</div>
+</div>
+    
+<div class="section-divider">
+  <span><i class="ti ti-sun"></i> Morning</span>
+  <span class="muted small">3</span>
+</div>
+    <div class="row-padded chevron-row">
+      <div><div class="bold small">Daily Morning</div><div class="muted xs">4 steps · Mon, Wed, Fri</div></div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    <div class="row-padded chevron-row">
+      <div><div class="bold small">Tret Mornings</div><div class="muted xs">5 steps · Tue, Thu</div></div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    <div class="row-padded chevron-row">
+      <div>
+        <div class="bold small">Travel Light <span class="date-pill">May 12–19</span></div>
+        <div class="muted xs">3 steps · daily during trip</div>
+      </div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    
+<div class="section-divider">
+  <span><i class="ti ti-moon"></i> Evening</span>
+  <span class="muted small">1</span>
+</div>
+    <div class="row-padded chevron-row">
+      <div><div class="bold small">Daily Evening</div><div class="muted xs">4 steps · Every day</div></div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    <div style="padding: 14px; border-top: 6px solid var(--surface-2);" class="muted small">
+      <i class="ti ti-archive"></i> Archived (3)
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="regimen-detail">
+  <div class="screen-header">
+    <h3 class="screen-title">Regimen detail</h3>
+    <span class="screen-id">regimen-detail</span>
+  </div>
+  <p class="screen-desc">Steps overview + sticky action footer.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen taller">
+    <div style="display: flex; flex-direction: column; height: 100%;">
+      <div style="padding: 12px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border);">
+        <div class="muted small">‹ Back</div>
+      </div>
+      <div style="flex: 1; overflow-y: auto;">
+        <div style="padding: 18px 14px;">
+          <div style="font-size: 18px; font-weight: 500;">Daily Morning</div>
+          <div class="muted small" style="margin-top: 4px;"><i class="ti ti-sun"></i> Morning · Mon, Wed, Fri</div>
+        </div>
+        
+<div class="step-row ">
+  <div class="step-num">1</div>
+  <div class="flex-1">
+    <div class="step-name">Gentle Cleanser</div>
+    <div class="step-meta">Cleanse · CeraVe</div>
+  </div>
+  
+</div>
+        
+<div class="step-row ">
+  <div class="step-num">2</div>
+  <div class="flex-1">
+    <div class="step-name">Vitamin C Serum</div>
+    <div class="step-meta">Treat · SkinCeuticals</div>
+  </div>
+  
+</div>
+        <div class="wait-strip"><i class="ti ti-clock"></i> Wait 5 min</div>
+        
+<div class="step-row ">
+  <div class="step-num">3</div>
+  <div class="flex-1">
+    <div class="step-name">Moisturizer</div>
+    <div class="step-meta">Moisturize · Cetaphil</div>
+  </div>
+  
+</div>
+        
+<div class="step-row ">
+  <div class="step-num">4</div>
+  <div class="flex-1">
+    <div class="step-name">SPF 50</div>
+    <div class="step-meta">Protect · Beauty of Joseon</div>
+  </div>
+  
+</div>
+      </div>
+      <div style="border-top: 6px solid var(--surface-2); background: var(--surface);">
+        <div class="row-padded">
+          <i class="ti ti-list muted"></i>
+          <div class="flex-1 small">Edit steps</div>
+          <i class="ti ti-chevron-right tertiary"></i>
+        </div>
+        <div class="row-padded">
+          <i class="ti ti-calendar muted"></i>
+          <div class="flex-1 small">Edit schedule</div>
+          <i class="ti ti-chevron-right tertiary"></i>
+        </div>
+        <div class="row-padded">
+          <i class="ti ti-share muted"></i>
+          <div class="flex-1 small">Share</div>
+          <i class="ti ti-chevron-right tertiary"></i>
+        </div>
+        <div class="row-padded">
+          <i class="ti ti-archive muted"></i>
+          <div class="flex-1 muted small">Archive</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="regimen-builder-empty">
+  <div class="screen-header">
+    <h3 class="screen-title">Builder — empty state</h3>
+    <span class="screen-id">regimen-builder-empty</span>
+  </div>
+  <p class="screen-desc">Dashed scaffold rows for the chosen time of day.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Cancel</span>
+  <div class="bold"></div>
+  <span class="muted small">Step 1 of 2</span>
+</div>
+    <div style="padding: 16px 14px 12px;">
+      <div class="label-meta">Routine name</div>
+      <div class="tertiary" style="font-size: 18px;">e.g., Tret Nights</div>
+    </div>
+    <div class="row-padded chevron-row">
+      <div><div class="label-meta">Time of day</div><div class="small"><i class="ti ti-moon"></i> Evening</div></div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    
+<div class="section-divider">
+  <span>Steps</span>
+  
+</div>
+    <div class="muted small" style="padding: 0 14px 8px;">Tap a slot below to add a product. Skip any you don't use.</div>
+    <div style="padding: 0 14px 14px; display: flex; flex-direction: column; gap: 6px;">
+      <div class="scaffold-row">
+        <div class="scaffold-icon"><i class="ti ti-droplet muted"></i></div>
+        <div class="flex-1"><div class="bold small">Cleanse</div><div class="muted xs">Tap to add a cleanser</div></div>
+        <i class="ti ti-plus tertiary"></i>
+      </div>
+      <div class="scaffold-row">
+        <div class="scaffold-icon"><i class="ti ti-flask muted"></i></div>
+        <div class="flex-1"><div class="bold small">Treat</div><div class="muted xs">Serum, retinoid, exfoliant…</div></div>
+        <i class="ti ti-plus tertiary"></i>
+      </div>
+      <div class="scaffold-row">
+        <div class="scaffold-icon"><i class="ti ti-cloud muted"></i></div>
+        <div class="flex-1"><div class="bold small">Moisturize</div><div class="muted xs">Tap to add a moisturizer</div></div>
+        <i class="ti ti-plus tertiary"></i>
+      </div>
+    </div>
+    <div class="row-padded">
+      <i class="ti ti-plus muted"></i>
+      <div class="flex-1 muted small">Add custom step</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="regimen-builder-01">
+  <div class="screen-header">
+    <h3 class="screen-title">Builder — Step 1</h3>
+    <span class="screen-id">regimen-builder-01</span>
+  </div>
+  <p class="screen-desc">Filled regimen with steps + wait timer.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Cancel</span>
+  <div class="bold"></div>
+  <span class="muted small">Step 1 of 2</span>
+</div>
+    <div style="padding: 16px 14px 12px;">
+      <div class="label-meta">Routine name</div>
+      <div style="font-size: 18px;">Daily Morning</div>
+    </div>
+    <div class="row-padded chevron-row">
+      <div><div class="label-meta">Time of day</div><div class="small"><i class="ti ti-sun"></i> Morning</div></div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    <div class="row-padded chevron-row">
+      <div><div class="label-meta">For</div><div class="muted small">Me</div></div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    
+<div class="section-divider">
+  <span>Steps</span>
+  <span class="muted small">4 steps</span>
+</div>
+    
+<div class="step-row ">
+  <i class="ti ti-grip-vertical tertiary"></i>
+  <div class="flex-1">
+    <div class="step-name">Gentle Cleanser</div>
+    <div class="step-meta">Cleanse · CeraVe</div>
+  </div>
+  <i class="ti ti-chevron-right tertiary"></i>
+</div>
+    
+<div class="step-row ">
+  <i class="ti ti-grip-vertical tertiary"></i>
+  <div class="flex-1">
+    <div class="step-name">Vitamin C Serum</div>
+    <div class="step-meta">Treat · SkinCeuticals</div>
+  </div>
+  <i class="ti ti-chevron-right tertiary"></i>
+</div>
+    <div class="wait-strip">
+      <i class="ti ti-clock"></i> Wait 5 min before next step
+      <span class="tertiary" style="margin-left: auto;">Edit</span>
+    </div>
+    
+<div class="step-row ">
+  <i class="ti ti-grip-vertical tertiary"></i>
+  <div class="flex-1">
+    <div class="step-name">Moisturizer</div>
+    <div class="step-meta">Moisturize · Cetaphil</div>
+  </div>
+  <i class="ti ti-chevron-right tertiary"></i>
+</div>
+    
+<div class="step-row ">
+  <i class="ti ti-grip-vertical tertiary"></i>
+  <div class="flex-1">
+    <div class="step-name">SPF 50</div>
+    <div class="step-meta">Protect · Beauty of Joseon</div>
+  </div>
+  <i class="ti ti-chevron-right tertiary"></i>
+</div>
+    <div class="row-padded">
+      <i class="ti ti-plus muted"></i>
+      <div class="flex-1 muted small">Add step</div>
+    </div>
+    <div style="padding: 14px;">
+      <div class="btn-primary" style="margin: 0;">Continue to schedule <i class="ti ti-arrow-right"></i></div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="step-editor">
+  <div class="screen-header">
+    <h3 class="screen-title">Step editor</h3>
+    <span class="screen-id">step-editor</span>
+  </div>
+  <p class="screen-desc">Same screen for adding or editing.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Cancel</span>
+  <div class="bold"></div>
+  <span class="muted small"><span class="bold">Done</span></span>
+</div>
+    <div style="padding: 16px 14px 8px;">
+      <div class="label-meta">Step type</div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px;">
+        <div class="chip">Cleanse</div>
+        <div class="chip active">Treat ✓</div>
+        <div class="chip">Moisturize</div>
+        <div class="chip">Mask</div>
+        <div class="chip">More…</div>
+      </div>
+    </div>
+    <div style="padding: 14px; border-top: 6px solid var(--surface-2);">
+      <div class="label-meta">What are you using?</div>
+      <div class="selected-product">
+        <div class="product-thumb"><i class="ti ti-photo tertiary"></i></div>
+        <div class="flex-1"><div class="product-brand">SkinCeuticals</div><div class="bold small">CE Ferulic Vitamin C</div></div>
+        <i class="ti ti-x muted"></i>
+      </div>
+      <div style="margin-top: 8px; display: flex; gap: 6px;">
+        <div class="btn-secondary flex-1"><i class="ti ti-search"></i> From my products</div>
+        <div class="btn-secondary flex-1"><i class="ti ti-edit"></i> Don't have it</div>
+      </div>
+    </div>
+    <div style="padding: 14px; border-top: 0.5px solid var(--border);">
+      <div class="label-meta">Wait before next step</div>
+      <div style="display: flex; gap: 4px; flex-wrap: wrap;">
+        <div class="chip">None</div>
+        <div class="chip">1m</div>
+        <div class="chip active">5m</div>
+        <div class="chip">10m</div>
+        <div class="chip">20m</div>
+        <div class="chip">Custom</div>
+      </div>
+    </div>
+    <div style="padding: 14px; border-top: 0.5px solid var(--border);">
+      <div class="label-meta">Notes (optional)</div>
+      <div class="input-field" style="min-height: 48px;">3–4 drops, neck and chest too</div>
+    </div>
+    <div style="padding: 14px; border-top: 0.5px solid var(--border); font-size: 12px; color: var(--danger); display: flex; align-items: center; gap: 8px;">
+      <i class="ti ti-trash"></i> Remove from regimen
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="regimen-builder-schedule-recurring">
+  <div class="screen-header">
+    <h3 class="screen-title">Schedule (recurring)</h3>
+    <span class="screen-id">schedule-recurring</span>
+  </div>
+  <p class="screen-desc">Weekday rows with gentle conflict surfacing.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Back</span>
+  <div class="bold"></div>
+  <span class="muted small">Step 2 of 2</span>
+</div>
+    <div style="padding: 16px 14px 12px;">
+      <div class="bold">When does this run?</div>
+      <div class="muted small" style="margin-top: 4px;">Daily Morning · Morning</div>
+    </div>
+    <div style="padding: 0 14px 12px; display: flex; gap: 6px;">
+      <div class="tab active">Recurring</div>
+      <div class="tab">Date range</div>
+    </div>
+    <div style="padding: 4px 14px 8px;" class="tertiary">
+      <div class="small" style="line-height: 1.5;">Recurring runs on the same weekdays each week. Use date range for trips, short stints, or one-offs.</div>
+    </div>
+    <div style="padding: 8px 14px 14px; display: flex; flex-direction: column; gap: 4px;">
+      <div class="weekday-row selected">
+        <div class="weekday-circle selected">M</div>
+        <div class="flex-1 bold small">Monday</div>
+        <i class="ti ti-check"></i>
+      </div>
+      <div class="weekday-row">
+        <div class="weekday-circle">T</div>
+        <div class="flex-1">
+          <div class="small">Tuesday</div>
+          <div class="muted xs" style="margin-top: 1px;">currently: Tret Mornings</div>
+        </div>
+      </div>
+      <div class="weekday-row selected">
+        <div class="weekday-circle selected">W</div>
+        <div class="flex-1 bold small">Wednesday</div>
+        <i class="ti ti-check"></i>
+      </div>
+      <div class="weekday-row">
+        <div class="weekday-circle">T</div>
+        <div class="flex-1">
+          <div class="small">Thursday</div>
+          <div class="muted xs" style="margin-top: 1px;">currently: Tret Mornings</div>
+        </div>
+      </div>
+      <div class="weekday-row selected">
+        <div class="weekday-circle selected">F</div>
+        <div class="flex-1 bold small">Friday</div>
+        <i class="ti ti-check"></i>
+      </div>
+      <div class="weekday-row">
+        <div class="weekday-circle">S</div>
+        <div class="flex-1 muted small">Saturday</div>
+      </div>
+      <div class="weekday-row">
+        <div class="weekday-circle">S</div>
+        <div class="flex-1 muted small">Sunday</div>
+      </div>
+    </div>
+    <div style="padding: 14px;">
+      <div class="btn-primary" style="margin: 0;">Save regimen</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="regimen-builder-schedule-range">
+  <div class="screen-header">
+    <h3 class="screen-title">Schedule (date range)</h3>
+    <span class="screen-id">schedule-range</span>
+  </div>
+  <p class="screen-desc">For trips and short stints. Calendar visualization of selected range.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Back</span>
+  <div class="bold"></div>
+  <span class="muted small">Step 2 of 2</span>
+</div>
+    <div style="padding: 16px 14px 12px;">
+      <div class="bold">When does this run?</div>
+      <div class="muted small" style="margin-top: 4px;">Travel Light · Morning</div>
+    </div>
+    <div style="padding: 0 14px 12px; display: flex; gap: 6px;">
+      <div class="tab">Recurring</div>
+      <div class="tab active">Date range</div>
+    </div>
+    <div style="padding: 8px 14px; display: flex; gap: 8px;">
+      <div style="flex: 1; padding: 10px; border: 0.5px solid var(--border); border-radius: 8px;">
+        <div class="label-meta">From</div><div class="bold small">May 12</div>
+      </div>
+      <div style="flex: 1; padding: 10px; border: 0.5px solid var(--border); border-radius: 8px;">
+        <div class="label-meta">To</div><div class="bold small">May 19</div>
+      </div>
+    </div>
+    <div style="padding: 8px 14px;">
+      <div style="padding: 8px; background: var(--surface-2); border-radius: 8px;">
+        <div class="cal-grid-mini"><div class="tertiary xs" style="text-align: center; padding: 2px;">M</div><div class="tertiary xs" style="text-align: center; padding: 2px;">T</div><div class="tertiary xs" style="text-align: center; padding: 2px;">W</div><div class="tertiary xs" style="text-align: center; padding: 2px;">T</div><div class="tertiary xs" style="text-align: center; padding: 2px;">F</div><div class="tertiary xs" style="text-align: center; padding: 2px;">S</div><div class="tertiary xs" style="text-align: center; padding: 2px;">S</div><div class="cal-cell-mini faded">28</div><div class="cal-cell-mini faded">29</div><div class="cal-cell-mini faded">30</div><div class="cal-cell-mini">1</div><div class="cal-cell-mini">2</div><div class="cal-cell-mini">3</div><div class="cal-cell-mini">4</div><div class="cal-cell-mini">5</div><div class="cal-cell-mini">6</div><div class="cal-cell-mini">7</div><div class="cal-cell-mini">8</div><div class="cal-cell-mini">9</div><div class="cal-cell-mini">10</div><div class="cal-cell-mini">11</div><div class="cal-cell-mini selected start">12</div><div class="cal-cell-mini selected">13</div><div class="cal-cell-mini selected">14</div><div class="cal-cell-mini selected">15</div><div class="cal-cell-mini selected">16</div><div class="cal-cell-mini selected">17</div><div class="cal-cell-mini selected">18</div><div class="cal-cell-mini selected end">19</div><div class="cal-cell-mini">20</div><div class="cal-cell-mini">21</div><div class="cal-cell-mini">22</div><div class="cal-cell-mini">23</div><div class="cal-cell-mini">24</div><div class="cal-cell-mini">25</div></div>
+      </div>
+      <div class="muted small" style="margin-top: 8px;">8 days · replaces your standard morning regimen for those days only</div>
+    </div>
+    <div style="padding: 14px;">
+      <div class="btn-primary" style="margin: 0;">Save regimen</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="edit-scope">
+  <div class="screen-header">
+    <h3 class="screen-title">Edit-scope dialog</h3>
+    <span class="screen-id">edit-scope</span>
+  </div>
+  <p class="screen-desc">Fires when modifying a step from Today. Past data never mutated.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall">
+    <div class="modal-bg-blur">
+      
+<div class="header">
+  <span class="muted">‹</span>
+  <div class="center"><div class="muted small">Today</div><div class="bold">Thu, May 7</div></div>
+  <span class="muted">›</span>
+</div>
+      
+<div class="tabs">
+  <div class="tab active">Morning</div><div class="tab ">Evening</div>
+</div>
+      <div style="padding: 12px 14px;" class="tertiary small">[steps]</div>
+    </div>
+    <div class="modal-overlay">
+      <div class="modal-sheet">
+        <div class="handle"><div class="handle-bar"></div></div>
+        <div style="padding: 4px 18px 12px;">
+          <div class="bold">Skip Vitamin C Serum</div>
+          <div class="muted small" style="margin-top: 4px; line-height: 1.4;">This is part of your Daily Morning regimen. Apply this change to:</div>
+        </div>
+        <div class="radio-option-padded selected">
+          <div class="radio dot"></div>
+          <div class="flex-1"><div class="bold small">Just today</div><div class="muted xs">Routine returns to normal tomorrow</div></div>
+        </div>
+        <div class="radio-option-padded">
+          <div class="radio"></div>
+          <div class="flex-1"><div class="bold small">Today and going forward</div><div class="muted xs">Past days unchanged</div></div>
+        </div>
+        <div class="radio-option-padded">
+          <div class="radio"></div>
+          <div class="flex-1"><div class="bold small">Pick specific days</div><div class="muted xs">Select dates from a calendar</div></div>
+        </div>
+        <div style="padding: 14px 18px; border-top: 0.5px solid var(--border); display: flex; gap: 8px;">
+          <div class="btn-secondary flex-1">Cancel</div>
+          <div class="btn-primary flex-1" style="margin: 0;">Confirm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</div>
+  </div>
+</section>
+
+
+<section class="feature-group">
+  <h2>Calendar</h2>
+  <p class="group-desc">Day toggle (= Today) and Month view. Dot states use shape, not just color.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="calendar-month">
+  <div class="screen-header">
+    <h3 class="screen-title">Calendar — Month view</h3>
+    <span class="screen-id">calendar-month</span>
+  </div>
+  <p class="screen-desc">Streak in header. Tap a day to expand detail card below.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    <div class="header header-calendar">
+      <span class="muted small">‹</span>
+      <div class="center">
+        <div class="muted small">May 2026</div>
+        <div class="bold"><i class="ti ti-flame" style="color: var(--accent);"></i> 12-day streak</div>
+      </div>
+      <span class="muted small">›</span>
+    </div>
+    
+<div class="tabs">
+  <div class="tab ">Day</div><div class="tab active">Month</div>
+</div>
+    <div class="calendar-grid" style="padding: 4px 8px 0;">
+      <div class="tertiary xs" style="text-align: center;">M</div><div class="tertiary xs" style="text-align: center;">T</div><div class="tertiary xs" style="text-align: center;">W</div><div class="tertiary xs" style="text-align: center;">T</div><div class="tertiary xs" style="text-align: center;">F</div><div class="tertiary xs" style="text-align: center;">S</div><div class="tertiary xs" style="text-align: center;">S</div>
+    </div>
+    <div class="calendar-grid" style="padding: 4px 8px 8px;">
+      <div class="calendar-cell faded"><div class="num">27</div></div><div class="calendar-cell faded"><div class="num">28</div></div><div class="calendar-cell faded"><div class="num">29</div></div><div class="calendar-cell faded"><div class="num">30</div></div>
+      <div class="calendar-cell"><div class="num">1</div><div class="dots"><div class="dot "></div><div class="dot "></div></div></div><div class="calendar-cell"><div class="num">2</div><div class="dots"><div class="dot "></div><div class="dot partial"></div></div></div><div class="calendar-cell"><div class="num">3</div><div class="dots"><div class="dot "></div><div class="dot skipped"></div></div></div>
+      <div class="calendar-cell"><div class="num">4</div><div class="dots"><div class="dot "></div><div class="dot "></div></div></div><div class="calendar-cell"><div class="num">5</div><div class="dots"><div class="dot "></div><div class="dot "></div></div></div><div class="calendar-cell"><div class="num">6</div><div class="dots"><div class="dot "></div><div class="dot partial"></div></div></div>
+      <div class="calendar-cell today"><div class="num bold">7</div><div class="dots"><div class="dot today-dot"></div><div class="dot no-data today-dot"></div></div></div><div class="calendar-cell future"><div class="num">8</div></div><div class="calendar-cell future"><div class="num">9</div></div><div class="calendar-cell future"><div class="num">10</div></div>
+      <div class="calendar-cell future"><div class="num">11</div></div><div class="calendar-cell future"><div class="num">12</div></div><div class="calendar-cell future"><div class="num">13</div></div><div class="calendar-cell future"><div class="num">14</div></div><div class="calendar-cell future"><div class="num">15</div></div><div class="calendar-cell future"><div class="num">16</div></div><div class="calendar-cell future"><div class="num">17</div></div>
+    </div>
+    <div style="padding: 12px 14px; border-top: 0.5px solid var(--border); background: var(--surface-2);">
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+        <div><div class="muted small">Thu, May 7</div><div class="bold small">Today</div></div>
+        <i class="ti ti-arrow-right muted"></i>
+      </div>
+      <div style="display: flex; gap: 6px; margin-bottom: 8px;">
+        <div class="day-card-mini">
+          <div class="day-card-mini-header"><div class="label-meta">AM · Daily Morning</div><div class="tertiary xs">4/4</div></div>
+          <div class="progress-track"><div class="progress-fill" style="width: 100%;"></div></div>
+        </div>
+        <div class="day-card-mini">
+          <div class="day-card-mini-header"><div class="label-meta">PM · Daily Evening</div><div class="tertiary xs">2/3</div></div>
+          <div class="progress-track"><div class="progress-fill" style="width: 67%; opacity: 0.5;"></div></div>
+        </div>
+      </div>
+      <div class="day-card-mini">
+        <div class="tertiary xs" style="margin-bottom: 3px;"><i class="ti ti-edit"></i> Journal</div>
+        <div class="note-italic">"Skin felt tight after VitC, switched to..."</div>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="annotation"><strong>Dot states:</strong> Filled = Complete. Half-filled = Partial. Slash = Skipped. Outline = No data. Shape distinction, not color alone.</div>
+</div>
+  </div>
+</section>
+
+
+<section class="feature-group">
+  <h2>Sharing</h2>
+  <p class="group-desc">Link-based shares. Optional description per share. Browser-rendered share view with deep link to app.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="share-create">
+  <div class="screen-header">
+    <h3 class="screen-title">Share creation</h3>
+    <span class="screen-id">share-create</span>
+  </div>
+  <p class="screen-desc">Optional description per share. Stored on share_artifact, not regimen.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen tall">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Cancel</span>
+  <div class="bold"></div>
+  <span class="muted small"><span class="bold">Create link</span></span>
+</div>
+    <div style="padding: 18px 14px 14px;">
+      <div class="bold" style="font-size: 16px;">Share Daily Morning</div>
+      <div class="muted small" style="margin-top: 4px;">Anyone with the link can view and copy this regimen.</div>
+    </div>
+    <div style="padding: 14px; border-top: 0.5px solid var(--border);">
+      <div class="label-meta">Description (optional)</div>
+      <div class="input-field" style="min-height: 60px;">What I do every weekday morning. Took years to land on this combo — the vitamin C made the biggest difference.</div>
+      <div class="tertiary" style="margin-top: 6px; font-size: 10px;">Helps recipients understand what this regimen is for.</div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="share-view">
+  <div class="screen-header">
+    <h3 class="screen-title">Share view (recipient)</h3>
+    <span class="screen-id">share-view</span>
+  </div>
+  <p class="screen-desc">Public, browser-rendered. Bookmark + Link per step. Copy CTA deep links to app.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    <div style="padding: 18px 14px; text-align: center; border-bottom: 0.5px solid var(--border);">
+      <div style="width: 44px; height: 44px; background: var(--surface-2); border-radius: 50%; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center;">
+        <i class="ti ti-user muted" style="font-size: 22px;"></i>
+      </div>
+      <div class="muted small">@sarahskincare's regimen</div>
+      <div style="font-size: 18px; font-weight: 500; margin-top: 2px;">Daily Morning</div>
+      <div class="muted small" style="margin-top: 2px;">Morning · 4 steps</div>
+    </div>
+    <div style="padding: 12px 14px; border-bottom: 0.5px solid var(--border);" class="muted small note-italic">
+      "What I do every weekday morning. Took years to land on this combo — the vitamin C made the biggest difference."
+    </div>
+    <div style="padding: 10px 14px; display: flex; align-items: center; justify-content: space-around; border-bottom: 0.5px solid var(--border);" class="muted xs">
+      <div class="cell-stat"><div class="num">1.2k</div><div class="lbl">Views</div></div>
+      <div class="cell-divider"></div>
+      <div class="cell-stat"><div class="num">86</div><div class="lbl">Copies</div></div>
+      <div class="cell-divider"></div>
+      <div class="cell-stat"><div class="num">May 4</div><div class="lbl">Shared</div></div>
+    </div>
+    
+<div class="share-step">
+  <div class="step-num small">1</div>
+  <div class="flex-1">
+    <div class="bold small">Gentle Cleanser</div>
+    <div class="muted xs">Cleanse · CeraVe</div>
+  </div>
+  <div style="display: flex; gap: 4px;">
+    <div class="share-action"><i class="ti ti-bookmark"></i></div>
+    <div class="share-action">Link <i class="ti ti-external-link"></i></div>
+  </div>
+</div>
+    
+<div class="share-step">
+  <div class="step-num small">2</div>
+  <div class="flex-1">
+    <div class="bold small">Vitamin C Serum</div>
+    <div class="muted xs">Treat · SkinCeuticals</div>
+  </div>
+  <div style="display: flex; gap: 4px;">
+    <div class="share-action"><i class="ti ti-bookmark"></i></div>
+    <div class="share-action">Link <i class="ti ti-external-link"></i></div>
+  </div>
+</div>
+    <div class="wait-strip" style="border-bottom: 0.5px solid var(--border);"><i class="ti ti-clock"></i> Wait 5 min</div>
+    
+<div class="share-step">
+  <div class="step-num small">3</div>
+  <div class="flex-1">
+    <div class="bold small">Moisturizer</div>
+    <div class="muted xs">Moisturize · Cetaphil</div>
+  </div>
+  <div style="display: flex; gap: 4px;">
+    <div class="share-action"><i class="ti ti-bookmark"></i></div>
+    <div class="share-action">Link <i class="ti ti-external-link"></i></div>
+  </div>
+</div>
+    
+<div class="share-step">
+  <div class="step-num small">4</div>
+  <div class="flex-1">
+    <div class="bold small">SPF 50</div>
+    <div class="muted xs">Protect · Beauty of Joseon</div>
+  </div>
+  <div style="display: flex; gap: 4px;">
+    <div class="share-action"><i class="ti ti-bookmark"></i></div>
+    <div class="share-action">Link <i class="ti ti-external-link"></i></div>
+  </div>
+</div>
+    <div style="padding: 14px; border-top: 6px solid var(--surface-2);">
+      <div class="btn-primary" style="margin: 0;"><i class="ti ti-copy"></i> Copy to my regimens</div>
+      <div class="tertiary xs" style="margin-top: 8px; text-align: center; line-height: 1.4;">Adds it to your regimens. Use it as-is or edit it for your needs.</div>
+    </div>
+    <div style="padding: 12px 14px; border-top: 0.5px solid var(--border); text-align: center;" class="muted small">
+      New to Regi? <span class="bold" style="color: var(--text-primary);">Get the app</span>
+    </div>
+  </div>
+</div>
+  
+</div>
+  </div>
+</section>
+
+
+<section class="feature-group">
+  <h2>Profile</h2>
+  <p class="group-desc">Minimal v1 surface.</p>
+  <div class="screen-grid">
+    
+<div class="screen" id="profile-01">
+  <div class="screen-header">
+    <h3 class="screen-title">Profile</h3>
+    <span class="screen-id">profile-01</span>
+  </div>
+  <p class="screen-desc">Minimal v1 surface: identity, lifetime stats, My Shares, Notifications, Sign out.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <div style="font-size: 16px; font-weight: 500;">Profile</div>
+  <i class="ti ti-settings"></i>
+</div>
+    <div style="padding: 24px 14px; text-align: center;">
+      <div style="width: 72px; height: 72px; background: var(--surface-2); border-radius: 50%; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center;">
+        <i class="ti ti-user muted" style="font-size: 32px;"></i>
+      </div>
+      <div style="font-size: 16px; font-weight: 500;">Sarah Mitchell</div>
+      <div class="muted small" style="margin-top: 2px;">@sarahskincare</div>
+    </div>
+    <div style="padding: 14px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-around; background: var(--surface-2);">
+      <div class="cell-stat"><div class="num">12</div><div class="lbl">Day streak</div></div>
+      <div class="cell-divider"></div>
+      <div class="cell-stat"><div class="num">347</div><div class="lbl">Regimens</div></div>
+      <div class="cell-divider"></div>
+      <div class="cell-stat"><div class="num">28</div><div class="lbl">Products</div></div>
+    </div>
+    <div style="padding: 12px 14px; border-top: 6px solid var(--surface-2); display: flex; align-items: center; gap: 12px;">
+      <i class="ti ti-share muted"></i>
+      <div class="flex-1">
+        <div class="small">My shares</div>
+        <div class="muted xs">3 active · 1.4k views · 92 copies</div>
+      </div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    <div class="row-padded">
+      <i class="ti ti-bell muted"></i>
+      <div class="flex-1 small">Notifications</div>
+      <i class="ti ti-chevron-right tertiary"></i>
+    </div>
+    <div style="padding: 16px 14px 24px; border-top: 6px solid var(--surface-2); text-align: center;" class="muted small">
+      Sign out
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="my-shares">
+  <div class="screen-header">
+    <h3 class="screen-title">My Shares dashboard</h3>
+    <span class="screen-id">my-shares</span>
+  </div>
+  <p class="screen-desc">Aggregate stats + per-share rows.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Back</span>
+  <div class="bold">My Shares</div>
+  <span class="muted small"></span>
+</div>
+    <div style="padding: 24px 14px; text-align: center;">
+      <div class="muted small" style="text-transform: uppercase; letter-spacing: 0.04em;">All-time</div>
+      <div style="margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 24px;">
+        <div><div style="font-size: 22px; font-weight: 500;">1.4k</div><div class="muted xs">Views</div></div>
+        <div class="cell-divider" style="height: 32px;"></div>
+        <div><div style="font-size: 22px; font-weight: 500;">92</div><div class="muted xs">Copies</div></div>
+        <div class="cell-divider" style="height: 32px;"></div>
+        <div><div style="font-size: 22px; font-weight: 500;">237</div><div class="muted xs">Link clicks</div></div>
+      </div>
+    </div>
+    <div style="padding: 4px 14px 14px; display: flex; align-items: center; gap: 8px;">
+      <div class="chip active">All 5</div>
+      <div class="chip">Active 3</div>
+      <div class="chip">Revoked 2</div>
+      <div class="tertiary small" style="margin-left: auto;">Recent <i class="ti ti-chevron-down"></i></div>
+    </div>
+    <div style="padding: 12px 14px; border-top: 0.5px solid var(--border);">
+      <div style="display: flex; align-items: flex-start; gap: 10px;">
+        <div class="flex-1">
+          <div class="bold small">Daily Morning</div>
+          <div class="muted xs" style="margin-top: 1px;">Regimen · shared May 4</div>
+        </div>
+        <div class="status-pill">Active</div>
+      </div>
+      <div style="margin-top: 8px; display: flex; gap: 14px;" class="muted small">
+        <div><span class="bold" style="color: var(--text-primary);">1.2k</span> views</div>
+        <div><span class="bold" style="color: var(--text-primary);">86</span> copies</div>
+        <div><span class="bold" style="color: var(--text-primary);">198</span> clicks</div>
+      </div>
+    </div>
+    <div style="padding: 12px 14px; border-top: 0.5px solid var(--border);">
+      <div style="display: flex; align-items: flex-start; gap: 10px;">
+        <div class="flex-1">
+          <div class="bold small">My current shelf</div>
+          <div class="muted xs" style="margin-top: 1px;">Shelf · shared Apr 22</div>
+        </div>
+        <div class="status-pill">Active</div>
+      </div>
+      <div style="margin-top: 8px; display: flex; gap: 14px;" class="muted small">
+        <div><span class="bold" style="color: var(--text-primary);">142</span> views</div>
+        <div><span class="bold" style="color: var(--text-primary);">4</span> copies</div>
+        <div><span class="bold" style="color: var(--text-primary);">31</span> clicks</div>
+      </div>
+    </div>
+    <div style="padding: 12px 14px; border-top: 0.5px solid var(--border); opacity: 0.55;">
+      <div style="display: flex; align-items: flex-start; gap: 10px;">
+        <div class="flex-1">
+          <div class="small">Old PM Routine</div>
+          <div class="muted xs" style="margin-top: 1px;">Regimen · revoked Mar 12</div>
+        </div>
+        <div class="status-pill outlined">Revoked</div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+</div>
+
+<div class="screen" id="notifications">
+  <div class="screen-header">
+    <h3 class="screen-title">Notifications</h3>
+    <span class="screen-id">notifications</span>
+  </div>
+  <p class="screen-desc">Three master toggles only. Per-regimen reminder times live on the regimen.</p>
+  
+<div class="phone-frame">
+  <div class="phone-screen ">
+    
+<div class="header header-simple">
+  <span class="muted small">‹ Back</span>
+  <div class="bold">Notifications</div>
+  <span class="muted small"></span>
+</div>
+    <div style="padding: 14px;" class="muted small" style="line-height: 1.5;">
+      Set when each regimen reminds you on the regimen itself. The toggles below control overall notification behavior.
+    </div>
+    <div class="toggle-row" style="border-top: 0.5px solid var(--border);">
+      <div class="flex-1">
+        <div class="bold small">Regimen reminders</div>
+        <div class="muted xs" style="margin-top: 2px;">Get reminded when each regimen is due</div>
+      </div>
+      <div class="toggle on"><div class="toggle-knob"></div></div>
+    </div>
+    <div class="toggle-row">
+      <div class="flex-1">
+        <div class="bold small">Wait timer alerts</div>
+        <div class="muted xs" style="margin-top: 2px;">Notify when a wait timer completes</div>
+      </div>
+      <div class="toggle on"><div class="toggle-knob"></div></div>
+    </div>
+    <div class="toggle-row">
+      <div class="flex-1">
+        <div class="bold small">Activity on my shares</div>
+        <div class="muted xs" style="margin-top: 2px;">When someone copies one of your shared regimens</div>
+      </div>
+      <div class="toggle on"><div class="toggle-knob"></div></div>
+    </div>
+  </div>
+</div>
+  
+</div>
+  </div>
+</section>
+
+
+</div>
+</body>
+</html>

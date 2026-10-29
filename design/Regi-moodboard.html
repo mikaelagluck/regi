@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>*regi — Brand Moodboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@1,600;1,700;1,800&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink:        #FF6FE7;
+    --blue:        #0057FF;
+    --yellow:      #FFE030;
+    --ink:         #0A0A0A;
+    --ink-2:       #3A3A3A;
+    --ink-3:       #6B6B6B;
+    --white:       #FFFFFF;
+    --grey-1:      #F7F7F7;
+    --grey-2:      #EFEFEF;
+    --grey-3:      #E2E2E2;
+    --grey-4:      #C8C8C8;
+  }
+
+  body {
+    background: #DCDCDC;
+    font-family: 'Instrument Sans', sans-serif;
+    padding: 56px 40px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── PAGE HEADER ── */
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 56px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #C8C8C8;
+  }
+  .header-meta {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #aaa;
+    text-align: right;
+    line-height: 1.9;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #bbb;
+    margin-bottom: 16px;
+    margin-top: 52px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .section::after { content:''; flex:1; height:1px; background:#C8C8C8; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 28px rgba(0,0,0,0.05);
+    margin-bottom: 20px;
+  }
+  .pad    { padding: 56px 64px; }
+  .pad-sm { padding: 44px 64px; }
+
+  svg { display: block; overflow: visible; }
+
+  /* ── COLOR PHILOSOPHY ANNOTATION ── */
+  .color-rule {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    background: var(--grey-1);
+    border-left: 3px solid var(--grey-3);
+  }
+  .color-rule.rule-pink  { border-color: var(--pink); }
+  .color-rule.rule-blue  { border-color: var(--blue); }
+  .color-rule.rule-yellow{ border-color: var(--yellow); }
+  .color-rule-label {
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    white-space: nowrap;
+    padding-top: 1px;
+    min-width: 80px;
+  }
+  .color-rule-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--ink-3);
+    line-height: 1.65;
+  }
+
+  /* ── PALETTE ── */
+  .palette-row  { display: flex; gap: 12px; flex-wrap: wrap; }
+  .swatch-block { display: flex; flex-direction: column; gap: 10px; flex: 1; min-width: 72px; }
+  .swatch       { height: 64px; border-radius: 8px; }
+  .swatch-name  { font-size: 11px; font-weight: 500; color: var(--ink); }
+  .swatch-hex   { font-size: 10px; font-weight: 300; color: var(--ink-3); font-family: monospace; }
+  .swatch-role  { font-size: 9px; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--grey-4); }
+
+  /* ── TYPOGRAPHY ── */
+  .type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; }
+  .type-col  { display: flex; flex-direction: column; gap: 28px; }
+  .type-tag  { font-size: 9px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--grey-4); margin-bottom: 6px; }
+  .type-rule { height: 1px; background: var(--grey-2); }
+
+  .t-display  { font-family: 'Spectral', serif; font-style: italic; font-weight: 700; font-size: 40px; line-height: 1.1; color: var(--ink); letter-spacing: -0.5px; }
+  .t-subhead  { font-family: 'Spectral', serif; font-style: italic; font-weight: 600; font-size: 22px; line-height: 1.3; color: var(--ink); }
+  .t-body     { font-family: 'Instrument Sans', sans-serif; font-weight: 300; font-size: 14px; line-height: 1.8; color: var(--ink-3); }
+  .t-body-med { font-family: 'Instrument Sans', sans-serif; font-weight: 400; font-size: 13px; line-height: 1.7; color: var(--ink-2); }
+  .t-ui       { font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); }
+  .t-caption  { font-family: 'Instrument Sans', sans-serif; font-weight: 300; font-size: 11px; color: var(--ink-3); letter-spacing: 0.04em; }
+
+  /* ── BUTTONS ── */
+  .btn-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; padding: 12px 22px;
+    border-radius: 4px; cursor: pointer; white-space: nowrap;
+  }
+  /* Primary — ink. Color reserved for meaning, not decoration */
+  .btn-primary  { background: var(--ink); color: var(--white); }
+  /* Destructive / skip / secondary negative action — muted */
+  .btn-ghost    { background: transparent; border: 1px solid var(--grey-3); color: var(--ink-3); }
+  /* Share — the ONE place yellow appears in UI, because sharing is the key social action */
+  .btn-share    { background: var(--yellow); color: var(--ink); }
+  /* Active / in-progress CTA — pink only when action is time-sensitive or celebrating */
+  .btn-active   { background: var(--pink); color: var(--white); }
+  /* Outline — secondary non-urgent action */
+  .btn-outline  { background: transparent; border: 1px solid var(--ink); color: var(--ink); }
+
+  /* ── UI COMPONENTS ── */
+
+  /* Step list */
+  .step-list  { display: flex; flex-direction: column; gap: 8px; }
+  .step-item  {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; border-radius: 10px;
+    background: var(--grey-1);
+    border: 1px solid transparent;
+  }
+  .step-num   {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600; flex-shrink: 0;
+    background: var(--grey-2); color: var(--ink-3);
+  }
+  .step-name  { font-family: 'Instrument Sans', sans-serif; font-weight: 400; font-size: 13px; color: var(--ink); flex: 1; }
+  .step-time  { font-family: 'Instrument Sans', sans-serif; font-weight: 300; font-size: 11px; color: var(--ink-3); }
+
+  /* Done — no color. Just muted opacity. Color is not needed to show completion */
+  .step-done  { opacity: 0.4; }
+  .step-done .step-num { background: var(--ink); color: var(--white); font-size: 9px; }
+  .step-done .step-name { text-decoration: line-through; }
+
+  /* Active — pink border only. The ONE moment pink appears in the step list */
+  .step-active {
+    background: var(--white);
+    border-color: var(--pink);
+  }
+  .step-active .step-num { background: var(--pink); color: var(--white); }
+  .step-active .step-name { font-weight: 500; }
+
+  /* Regimen cards — mostly neutral. Color only on the active/primary card */
+  .regimen-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .r-card {
+    border-radius: 14px; padding: 22px;
+    border: 1px solid var(--grey-3);
+    background: var(--white);
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative; overflow: hidden;
+  }
+  /* Default card — all neutral */
+  .r-icon {
+    width: 30px; height: 30px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; background: var(--grey-1);
+  }
+  .r-title { font-family: 'Instrument Sans', sans-serif; font-weight: 500; font-size: 13px; color: var(--ink); }
+  .r-sub   { font-family: 'Instrument Sans', sans-serif; font-weight: 300; font-size: 11px; color: var(--ink-3); }
+  .r-progress { height: 2px; background: var(--grey-2); border-radius: 2px; margin-top: 6px; overflow: hidden; }
+  .r-progress-fill { height: 100%; border-radius: 2px; background: var(--grey-4); }
+
+  /* Active regimen card — pink progress bar ONLY. Not the whole card */
+  .r-card-active { border-color: var(--grey-3); }
+  .r-card-active .r-progress-fill { background: var(--pink); }
+  .r-card-active .r-title { color: var(--ink); }
+
+  /* Share card — yellow, because sharing is a distinct action category */
+  .r-card-share {
+    background: var(--yellow);
+    border-color: var(--yellow);
+  }
+  .r-card-share .r-icon { background: rgba(0,0,0,0.07); }
+  .r-card-share .r-sub  { color: rgba(0,0,0,0.5); }
+
+  /* Streak / stat chips */
+  .stat-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .stat-chip {
+    display: flex; flex-direction: column; gap: 3px;
+    padding: 14px 18px; border-radius: 10px;
+    background: var(--grey-1); border: 1px solid var(--grey-2);
+    flex: 1; min-width: 100px;
+  }
+  .stat-val {
+    font-family: 'Spectral', serif; font-style: italic;
+    font-weight: 700; font-size: 28px; color: var(--ink); line-height: 1;
+  }
+  /* Streak number gets pink — it's the most important motivating metric */
+  .stat-val.highlight { color: var(--pink); }
+  .stat-label { font-family: 'Instrument Sans', sans-serif; font-weight: 300; font-size: 11px; color: var(--ink-3); letter-spacing: 0.06em; }
+
+  /* Notification / toast */
+  .toast {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 18px; border-radius: 10px;
+    background: var(--ink); color: var(--white);
+    font-family: 'Instrument Sans', sans-serif;
+  }
+  .toast-icon { font-size: 16px; flex-shrink: 0; }
+  .toast-text { font-size: 13px; font-weight: 300; line-height: 1.5; flex: 1; }
+  .toast-action {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--pink); /* Pink only on the CTA within dark context */
+    white-space: nowrap; flex-shrink: 0;
+  }
+
+  /* Color usage annotation */
+  .annotation {
+    font-size: 10px; font-weight: 300; color: var(--ink-3);
+    font-style: italic; margin-top: 8px; line-height: 1.6;
+    padding-left: 14px; border-left: 2px solid var(--grey-3);
+  }
+
+  /* ── VOICE ── */
+  .voice-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .voice-col   { display: flex; flex-direction: column; gap: 24px; }
+  .voice-block { border-left: 2px solid var(--grey-3); padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
+  .voice-ctx  { font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--grey-4); }
+  .voice-copy { font-family: 'Spectral', serif; font-style: italic; font-size: 18px; font-weight: 600; color: var(--ink); line-height: 1.35; }
+  .voice-sub  { font-family: 'Instrument Sans', sans-serif; font-weight: 300; font-size: 12px; color: var(--ink-3); line-height: 1.65; margin-top: 2px; }
+
+  .ui-rule { height: 1px; background: var(--grey-2); margin: 4px 0; }
+
+  .footer {
+    margin-top: 56px; padding-top: 24px;
+    border-top: 1px solid #C8C8C8;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-note { font-size: 10px; font-weight: 300; letter-spacing: 0.1em; color: #bbb; }
+
+  @media(max-width:760px){
+    body { padding: 28px 16px; }
+    .pad, .pad-sm { padding: 36px 28px; }
+    .type-grid, .voice-grid { grid-template-columns: 1fr; gap: 28px; }
+    .regimen-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <svg width="300" height="82" viewBox="0 0 300 82" overflow="visible">
+    <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+    <text class="t" x="0" y="72" font-size="72" letter-spacing="-2">
+      <tspan fill="#FF6FE7">*</tspan><tspan fill="#0A0A0A">regi</tspan>
+    </text>
+  </svg>
+  <div class="header-meta">
+    Brand Moodboard · Final<br>
+    Spectral Italic + Instrument Sans<br>
+    Colour used sparingly · by meaning
+  </div>
+</div>
+
+<!-- ══ 1. LOGO ══ -->
+<div class="section">Logo</div>
+<div class="card">
+  <div class="pad" style="display:flex;flex-direction:column;gap:48px;">
+
+    <div>
+      <div class="type-tag" style="margin-bottom:20px;">Primary — 120px</div>
+      <svg width="440" height="148" viewBox="0 0 440 148">
+        <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+        <text class="t" x="0" y="120" font-size="120" letter-spacing="-3">
+          <tspan fill="#FF6FE7">*</tspan><tspan fill="#0A0A0A">regi</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <div class="ui-rule"></div>
+
+    <!-- Size scale -->
+    <div style="display:flex;align-items:flex-end;gap:40px;flex-wrap:wrap;">
+      <div>
+        <svg width="210" height="70" viewBox="0 0 210 70">
+          <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+          <text class="t" x="0" y="56" font-size="56" letter-spacing="-1.5">
+            <tspan fill="#FF6FE7">*</tspan><tspan fill="#0A0A0A">regi</tspan>
+          </text>
+        </svg>
+        <div class="type-tag" style="margin-top:8px;">56px · App header</div>
+      </div>
+      <div>
+        <svg width="155" height="52" viewBox="0 0 155 52">
+          <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+          <text class="t" x="0" y="40" font-size="40" letter-spacing="-1">
+            <tspan fill="#FF6FE7">*</tspan><tspan fill="#0A0A0A">regi</tspan>
+          </text>
+        </svg>
+        <div class="type-tag" style="margin-top:8px;">40px · Card header</div>
+      </div>
+      <div>
+        <svg width="112" height="38" viewBox="0 0 112 38">
+          <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+          <text class="t" x="0" y="28" font-size="28" letter-spacing="-0.5">
+            <tspan fill="#FF6FE7">*</tspan><tspan fill="#0A0A0A">regi</tspan>
+          </text>
+        </svg>
+        <div class="type-tag" style="margin-top:8px;">28px · Nav bar</div>
+      </div>
+    </div>
+
+    <div class="ui-rule"></div>
+
+    <!-- Colourways -->
+    <div>
+      <div class="type-tag" style="margin-bottom:16px;">Colourways</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+
+        <div style="background:#fff;border:1px solid var(--grey-3);border-radius:12px;padding:22px 28px;display:flex;flex-direction:column;gap:10px;">
+          <svg width="155" height="48" viewBox="0 0 155 48">
+            <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+            <text class="t" x="0" y="38" font-size="38" letter-spacing="-1">
+              <tspan fill="#FF6FE7">*</tspan><tspan fill="#0A0A0A">regi</tspan>
+            </text>
+          </svg>
+          <div class="type-tag">On White · Default</div>
+        </div>
+
+        <div style="background:#0A0A0A;border-radius:12px;padding:22px 28px;display:flex;flex-direction:column;gap:10px;">
+          <svg width="155" height="48" viewBox="0 0 155 48">
+            <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+            <text class="t" x="0" y="38" font-size="38" letter-spacing="-1">
+              <tspan fill="#FF6FE7">*</tspan><tspan fill="#ffffff">regi</tspan>
+            </text>
+          </svg>
+          <div class="type-tag" style="color:#444;">On Ink</div>
+        </div>
+
+        <div style="background:#FF6FE7;border-radius:12px;padding:22px 28px;display:flex;flex-direction:column;gap:10px;">
+          <svg width="155" height="48" viewBox="0 0 155 48">
+            <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+            <text class="t" x="0" y="38" font-size="38" letter-spacing="-1">
+              <tspan fill="#FFE030">*</tspan><tspan fill="#ffffff">regi</tspan>
+            </text>
+          </svg>
+          <div class="type-tag" style="color:rgba(255,255,255,0.4);">On Pink · Yellow *</div>
+        </div>
+
+        <div style="background:#0057FF;border-radius:12px;padding:22px 28px;display:flex;flex-direction:column;gap:10px;">
+          <svg width="155" height="48" viewBox="0 0 155 48">
+            <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+            <text class="t" x="0" y="38" font-size="38" letter-spacing="-1">
+              <tspan fill="#FF6FE7">*</tspan><tspan fill="#ffffff">regi</tspan>
+            </text>
+          </svg>
+          <div class="type-tag" style="color:rgba(255,255,255,0.3);">On Blue</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 2. COLOUR PHILOSOPHY ══ -->
+<div class="section">Colour Philosophy</div>
+<div class="card">
+  <div class="pad" style="display:flex;flex-direction:column;gap:12px;">
+
+    <div style="margin-bottom:8px;">
+      <div class="type-tag" style="margin-bottom:12px;">The rule: colour = signal, not style</div>
+      <div class="t-body" style="max-width:600px;">The UI is predominantly ink on white. The three brand colours appear only when they carry specific meaning — never decoratively. A user should be able to read the colour of an element and understand its function.</div>
+    </div>
+
+    <div class="color-rule rule-pink">
+      <div class="color-rule-label" style="color:var(--pink);">Pink</div>
+      <div class="color-rule-desc">The <em>active state</em>. Appears on the current step, the in-progress regimen, streak milestones, and primary CTAs when action is urgent or celebratory. Never used as background fill in passive UI.</div>
+    </div>
+    <div class="color-rule rule-blue">
+      <div class="color-rule-label" style="color:var(--blue);">Blue</div>
+      <div class="color-rule-desc">The <em>informational state</em>. Used for links, secondary actions, and system messages. Appears when something is available but not urgent — evening routine, saved items, help text.</div>
+    </div>
+    <div class="color-rule rule-yellow">
+      <div class="color-rule-label" style="color:#B8960A;">Yellow</div>
+      <div class="color-rule-desc">The <em>sharing state</em>. Reserved exclusively for the share/send mechanic — the yellow share button, the shared regimen badge, the "sent" confirmation. Yellow means someone else is involved.</div>
+    </div>
+    <div class="color-rule">
+      <div class="color-rule-label">Ink + Grey</div>
+      <div class="color-rule-desc">Everything else. The vast majority of the UI — steps, cards, labels, navigation, body copy — uses the ink and grey scale. Colour earns its appearance by carrying meaning.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 3. PALETTE ══ -->
+<div class="section">Colour Palette</div>
+<div class="card">
+  <div class="pad">
+    <div class="palette-row">
+      <div class="swatch-block">
+        <div class="swatch" style="background:var(--pink);"></div>
+        <div class="swatch-name">Pink</div>
+        <div class="swatch-hex">#FF6FE7</div>
+        <div class="swatch-role">Active · CTA</div>
+      </div>
+      <div class="swatch-block">
+        <div class="swatch" style="background:var(--blue);"></div>
+        <div class="swatch-name">Blue</div>
+        <div class="swatch-hex">#0057FF</div>
+        <div class="swatch-role">Info · Links</div>
+      </div>
+      <div class="swatch-block">
+        <div class="swatch" style="background:var(--yellow);"></div>
+        <div class="swatch-name">Yellow</div>
+        <div class="swatch-hex">#FFE030</div>
+        <div class="swatch-role">Share only</div>
+      </div>
+      <div class="swatch-block">
+        <div class="swatch" style="background:var(--ink);"></div>
+        <div class="swatch-name">Ink</div>
+        <div class="swatch-hex">#0A0A0A</div>
+        <div class="swatch-role">Primary text</div>
+      </div>
+      <div class="swatch-block">
+        <div class="swatch" style="background:var(--ink-2);"></div>
+        <div class="swatch-name">Ink 2</div>
+        <div class="swatch-hex">#3A3A3A</div>
+        <div class="swatch-role">Secondary text</div>
+      </div>
+      <div class="swatch-block">
+        <div class="swatch" style="background:var(--ink-3);"></div>
+        <div class="swatch-name">Ink 3</div>
+        <div class="swatch-hex">#6B6B6B</div>
+        <div class="swatch-role">Captions</div>
+      </div>
+      <div class="swatch-block">
+        <div class="swatch" style="background:var(--grey-1); border:1px solid var(--grey-3);"></div>
+        <div class="swatch-name">Grey 1</div>
+        <div class="swatch-hex">#F7F7F7</div>
+        <div class="swatch-role">Step bg</div>
+      </div>
+      <div class="swatch-block">
+        <div class="swatch" style="background:var(--white); border:1px solid var(--grey-3);"></div>
+        <div class="swatch-name">White</div>
+        <div class="swatch-hex">#FFFFFF</div>
+        <div class="swatch-role">Background</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 4. TYPOGRAPHY ══ -->
+<div class="section">Typography</div>
+<div class="card">
+  <div class="pad">
+    <div class="type-grid">
+      <div class="type-col">
+        <div>
+          <div class="type-tag">Display — Spectral Italic 700</div>
+          <div class="t-display">Your morning regimen, made effortless.</div>
+        </div>
+        <div class="type-rule"></div>
+        <div>
+          <div class="type-tag">Subheading — Spectral Italic 600</div>
+          <div class="t-subhead">Build a regimen that fits your life.</div>
+        </div>
+        <div class="type-rule"></div>
+        <div>
+          <div class="type-tag">Body — Instrument Sans Light</div>
+          <div class="t-body">Track every step, share with the people you love, and show up for your skin — every single day. Simple enough for your mum, detailed enough for you.</div>
+        </div>
+      </div>
+      <div class="type-col">
+        <div>
+          <div class="type-tag">Body Medium — Instrument Sans Regular</div>
+          <div class="t-body-med">Cleanse · Tone · Moisturise · SPF<br>4 steps · 8 minutes · Every morning</div>
+        </div>
+        <div class="type-rule"></div>
+        <div>
+          <div class="type-tag">UI Label — Instrument Sans 500 Uppercase</div>
+          <div class="t-ui">Morning Regimen · 4 Steps · 8 Min</div>
+        </div>
+        <div class="type-rule"></div>
+        <div>
+          <div class="type-tag">Caption — Instrument Sans Light</div>
+          <div class="t-caption">Last completed · Today at 7:42 am</div>
+        </div>
+        <div class="type-rule"></div>
+        <div>
+          <div class="type-tag">Spectral in context — colour carries meaning</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="font-family:'Spectral',serif;font-style:italic;font-weight:700;font-size:22px;color:var(--ink);line-height:1.2;">Begin your regimen</div>
+            <div style="font-family:'Spectral',serif;font-style:italic;font-weight:700;font-size:22px;line-height:1.2;"><span style="color:var(--pink);">Step 3</span> <span style="color:var(--ink);">of 5 — in progress</span></div>
+            <div style="font-family:'Spectral',serif;font-style:italic;font-weight:700;font-size:22px;color:var(--yellow);line-height:1.2;">Send your regimen*</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ 5. UI COMPONENTS ══ -->
+<div class="section">UI Components</div>
+<div class="card">
+  <div class="pad" style="display:flex;flex-direction:column;gap:44px;">
+
+    <!-- Buttons -->
+    <div>
+      <div class="type-tag" style="margin-bottom:16px;">Buttons — colour communicates function</div>
+      <div class="btn-row">
+        <div class="btn btn-primary">Begin regimen</div>
+        <div class="btn btn-active">Step 3 — go</div>
+        <div class="btn btn-share">Send to a friend</div>
+        <div class="btn btn-outline">Edit</div>
+        <div class="btn btn-ghost">Skip today</div>
+      </div>
+      <div class="annotation">Ink = primary action. Pink = time-sensitive or celebratory. Yellow = sharing only. Ghost = low-stakes secondary.</div>
+    </div>
+
+    <div class="ui-rule"></div>
+
+    <!-- Stats -->
+    <div>
+      <div class="type-tag" style="margin-bottom:16px;">Stats — pink reserved for streak (the motivating metric)</div>
+      <div class="stat-row">
+        <div class="stat-chip">
+          <div class="stat-val highlight">12</div>
+          <div class="stat-label">Day streak</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val">4</div>
+          <div class="stat-label">Steps today</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val">3</div>
+          <div class="stat-label">Regimens shared</div>
+        </div>
+        <div class="stat-chip">
+          <div class="stat-val">8</div>
+          <div class="stat-label">Min · morning</div>
+        </div>
+      </div>
+      <div class="annotation">Only the streak number is pink — it's the primary motivation signal. All other stats are ink.</div>
+    </div>
+
+    <div class="ui-rule"></div>
+
+    <!-- Regimen cards -->
+    <div>
+      <div class="type-tag" style="margin-bottom:16px;">Regimen cards — colour on progress bar only</div>
+      <div class="regimen-grid">
+        <div class="r-card r-card-active">
+          <div class="r-icon">🌅</div>
+          <div class="r-title">Morning</div>
+          <div class="r-sub">4 steps · 8 min · 2 done</div>
+          <div class="r-progress"><div class="r-progress-fill" style="width:50%;"></div></div>
+        </div>
+        <div class="r-card">
+          <div class="r-icon">🌙</div>
+          <div class="r-title">Evening</div>
+          <div class="r-sub">6 steps · 12 min</div>
+          <div class="r-progress"><div class="r-progress-fill" style="width:0%;"></div></div>
+        </div>
+        <div class="r-card r-card-share">
+          <div class="r-icon">↗</div>
+          <div class="r-title">Share a regimen</div>
+          <div class="r-sub">Send to a friend</div>
+        </div>
+      </div>
+      <div class="annotation">Morning card: pink progress bar only — signals active state. Evening card: fully neutral — not yet started. Share: yellow — distinct action category.</div>
+    </div>
+
+    <div class="ui-rule"></div>
+
+    <!-- Step list -->
+    <div>
+      <div class="type-tag" style="margin-bottom:16px;">Step list — pink on active step only</div>
+      <div class="step-list">
+        <div class="step-item step-done">
+          <div class="step-num">✓</div>
+          <div class="step-name">Cleanse</div>
+          <div class="step-time">2 min</div>
+        </div>
+        <div class="step-item step-done">
+          <div class="step-num">✓</div>
+          <div class="step-name">Tone</div>
+          <div class="step-time">1 min</div>
+        </div>
+        <div class="step-item step-active">
+          <div class="step-num">3</div>
+          <div class="step-name">Vitamin C Serum</div>
+          <div class="step-time">2 min</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-name">Moisturise</div>
+          <div class="step-time">2 min</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-name">SPF</div>
+          <div class="step-time">1 min</div>
+        </div>
+      </div>
+      <div class="annotation">Done: muted opacity, no colour needed. Active: pink border + number only. Upcoming: fully neutral ink on grey.</div>
+    </div>
+
+    <div class="ui-rule"></div>
+
+    <!-- Toast -->
+    <div>
+      <div class="type-tag" style="margin-bottom:16px;">Notification — pink CTA within dark context</div>
+      <div style="display:flex;flex-direction:column;gap:10px;max-width:480px;">
+        <div class="toast">
+          <div class="toast-icon">🔥</div>
+          <div class="toast-text">7-day streak. You're on a roll.</div>
+          <div class="toast-action">Keep going</div>
+        </div>
+        <div class="toast" style="background:var(--yellow);">
+          <div class="toast-icon">↗</div>
+          <div class="toast-text" style="color:var(--ink);">Sarah received your regimen.</div>
+          <div class="toast-action" style="color:var(--ink);opacity:0.5;">View</div>
+        </div>
+      </div>
+      <div class="annotation">Dark toast: pink action label only. Yellow toast: share confirmation — yellow signals the social action category.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ 6. VOICE & COPY ══ -->
+<div class="section">Voice & Copy</div>
+<div class="card">
+  <div class="pad">
+    <div class="voice-grid">
+      <div class="voice-col">
+        <div class="voice-block" style="border-color:var(--ink-3);">
+          <div class="voice-ctx">Onboarding — Hero</div>
+          <div class="voice-copy">Your skin deserves a regimen it can count on.*</div>
+          <div class="voice-sub">Motivating, personal, direct.</div>
+        </div>
+        <div class="voice-block" style="border-color:var(--ink-3);">
+          <div class="voice-ctx">Share flow — CTA</div>
+          <div class="voice-copy">Make someone's morning a little better.*</div>
+          <div class="voice-sub">Warm, generous. Sharing as a gift.</div>
+        </div>
+        <div class="voice-block" style="border-color:var(--ink-3);">
+          <div class="voice-ctx">Streak — 7 days</div>
+          <div class="voice-copy">7 days. You're on a roll.*</div>
+          <div class="voice-sub">Short, punchy. Celebrates without noise.</div>
+        </div>
+      </div>
+      <div class="voice-col">
+        <div class="voice-block" style="border-color:var(--ink-3);">
+          <div class="voice-ctx">Empty state</div>
+          <div class="voice-copy">Every great skin day starts with a regimen.*</div>
+          <div class="voice-sub">Inviting, not pressuring.</div>
+        </div>
+        <div class="voice-block" style="border-color:var(--ink-3);">
+          <div class="voice-ctx">Routine received</div>
+          <div class="voice-copy">Someone who knows your skin made this for you.*</div>
+          <div class="voice-sub">Personal, warms the sharing mechanic.</div>
+        </div>
+        <div class="voice-block" style="border-color:var(--grey-3);">
+          <div class="voice-ctx">Tone principles</div>
+          <div class="voice-sub" style="line-height:2.1;">
+            <span style="color:var(--ink);font-weight:500;">Confident</span> — never bossy<br>
+            <span style="color:var(--ink);font-weight:500;">Warm</span> — never saccharine<br>
+            <span style="color:var(--ink);font-weight:500;">Direct</span> — never cold<br>
+            <span style="color:var(--ink);font-weight:500;">Playful</span> — never immature
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <svg width="112" height="38" viewBox="0 0 112 38">
+    <defs><style>.t{font-family:'Spectral',serif;font-style:italic;font-weight:700;}</style></defs>
+    <text class="t" x="0" y="28" font-size="28" letter-spacing="-0.5">
+      <tspan fill="#FF6FE7">*</tspan><tspan fill="#0A0A0A">regi</tspan>
+    </text>
+  </svg>
+  <div class="footer-note">Brand Moodboard · Final · Spectral Italic 700 + Instrument Sans · Colour by meaning · #FF6FE7 · #0057FF · #FFE030</div>
+</div>
+
+</body>
+</html>

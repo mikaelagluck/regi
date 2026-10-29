@@ -1,0 +1,4 @@
+.card { border-radius: var(--radius-lg); background: var(--white); border: 1px solid var(--grey-3); }
+.padded { padding: var(--space-4); }
+.filled { background: var(--grey-1); border-color: var(--grey-2); }
+.share { background: var(--yellow); border-color: var(--yellow); color: var(--on-yellow); }

@@ -1,0 +1,23 @@
+'use client';
+
+export class ApiError extends Error {
+  constructor(
+    public status: number,
+    message: string,
+  ) {
+    super(message);
+  }
+}
+
+/** JSON fetch for our /api routes. Throws ApiError with the server's message. */
+export async function api<T = unknown>(path: string, init: { method?: string; body?: unknown } = {}): Promise<T> {
+  const res = await fetch(path, {
+    method: init.method ?? (init.body === undefined ? 'GET' : 'POST'),
+    headers: init.body === undefined ? undefined : { 'Content-Type': 'application/json' },
+    body: init.body === undefined ? undefined : JSON.stringify(init.body),
+    credentials: 'same-origin',
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new ApiError(res.status, (data as { error?: string }).error ?? 'Something went wrong');
+  return data as T;
+}

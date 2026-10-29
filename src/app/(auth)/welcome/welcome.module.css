@@ -1,0 +1,9 @@
+.screen { min-height: 100dvh; display: flex; flex-direction: column; padding: calc(env(safe-area-inset-top) + var(--space-6)) var(--space-5) calc(env(safe-area-inset-bottom) + var(--space-5)); }
+.brand { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: var(--space-3); }
+.tagline { max-width: 260px; font-size: var(--text-body); color: var(--ink-tertiary); }
+.actions { display: flex; flex-direction: column; gap: var(--space-2); }
+.form, .sent { display: flex; flex-direction: column; gap: var(--space-3); }
+.sentTitle { font-size: var(--text-headline); font-weight: var(--weight-semibold); }
+.sentBody { font-size: var(--text-body-sm); color: var(--ink-tertiary); }
+.error { font-size: var(--text-body-sm); color: var(--ink); background: var(--blue-tint); border-left: 3px solid var(--blue); padding: var(--space-2) var(--space-3); border-radius: var(--radius-xs); }
+.footer { margin-top: var(--space-3); text-align: center; font-size: var(--text-caption); color: var(--ink-tertiary); }
