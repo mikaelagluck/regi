@@ -55,15 +55,16 @@ npm run lint && npm run build
 - Phase 2: Playwright tracking 3/3 ✅ (calendar dots + retro marker, streak/rollover cron + Day N, finish → history/repurchase)
 - Phase 1: Vitest 74/74 ✅ · Playwright 3/3 ✅ (solo MVP flow: sign up → 5 products → morning regimen → complete incl. timer + skip-wait + success → next logical day reappears → missed day resets streak) · lint ✅ · build ✅
 
+## Deployment
+- Live: https://www.regi.skin (apex regi.skin → www; also https://regi-lilac.vercel.app). Vercel project `regi`, GitHub `mikaelagluck/regi`, Supabase project `kkwzmodanutsdfhuqrys`.
+- All 6 migrations applied on hosted Supabase (`supabase db push`), so they're validated on real Supabase. Email magic-link sign-in works end to end.
+
 ## Needs Mikaela
-- Docker Desktop (to run `supabase start` and validate migrations against real Supabase locally) — not installed; everything runs on PGlite meanwhile.
-- Hosted Supabase project: URL, anon key, service-role key, DATABASE_URL (pooler).
-- Google OAuth client ID/secret (configure in Supabase → Auth → Providers).
-- SMTP provider for production magic-link email.
-- VAPID keys for production Web Push (`npm run gen:vapid`; dev keys are in the gitignored `.env.local`).
-- Separate GitHub repo, Supabase project and Vercel project for regi (nothing is linked yet — this is a local repo only) + production domain.
-- Vercel plan: per-minute cron for push needs Pro; on Hobby use Supabase Cron (`regi_schedule_jobs`).
+- Supabase Cron: enable `pg_cron` + `pg_net`, then run `select public.regi_schedule_jobs('https://www.regi.skin', '<CRON_SECRET>');` (streak rollover + push sending).
+- Custom SMTP provider in Supabase (built-in sender is rate-limited; fine for testing only).
+- Google OAuth client (then set `NEXT_PUBLIC_AUTH_GOOGLE_ENABLED=true` in Vercel and redeploy).
 - Terms / Privacy copy (placeholder pages at /terms, /privacy).
+- Docker Desktop is now optional (only for running Supabase locally).
 
 ## Next step
-All phases complete. Next: Mikaela creates the regi GitHub repo + Supabase + Vercel projects (see Needs Mikaela), then follow README → Deploy. Run `supabase start` + `supabase db reset` once Docker is installed to validate migrations on real Supabase.
+Supabase Cron, then SMTP, then Google sign-in.
