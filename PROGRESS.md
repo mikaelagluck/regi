@@ -33,9 +33,9 @@ Status legend: ✅ built & checked at 390px · 🟡 partial · ⬜ not started
 | 24 | `share-view` | B7.2, B7.4, B7.5 | `/r/[slug]` (public, SSR, OG); product: `/p/[slug]` | 3 | ✅ |
 | 25 | `profile-01` | B8.1 | `/profile` | 0/4 | ✅ |
 | 26 | `my-shares` | B8.2 | `/profile/shares`, drilldown `/profile/shares/[id]` | 3 | ✅ |
-| 27 | `notifications` | B8.3 | `/profile/notifications` | 4 | ⬜ |
+| 27 | `notifications` | B8.3 | `/profile/notifications` | 4 | ✅ |
 | — | Archive surface (no wireframe) | B5.1 "Archived (N)" | `/regimens/archived` | 4 | ✅ |
-| — | Account deletion (no wireframe; CLAUDE.md conflict #9) | — | `/profile` → confirmation sheet | 4 | ⬜ |
+| — | Account deletion (no wireframe; CLAUDE.md conflict #9) | — | `/profile` → confirmation sheet | 4 | ✅ |
 | — | Dev galleries | CLAUDE.md | `/dev/atoms`, `/dev/screens` | 0 | ✅ |
 
 ## What runs and how
@@ -50,6 +50,7 @@ npm run lint && npm run build
 
 ## Test status
 - Phase 0: Vitest 74/74 ✅ · Playwright auth 2/2 ✅ · lint ✅ · build ✅
+- Phase 4: Vitest 77/77 ✅ · Playwright 14/14 ✅ (adds axe a11y on 15 screens, sheet focus trap/Esc, edit-scope, reduced motion, account deletion, PWA manifest/icons/SW) · Lighthouse /welcome mobile: Perf 94 · A11y 100 · Best practices 100 · SEO 100 (Lighthouse 12 has no PWA category; installability covered by E2E)
 - Phase 3: Vitest 75/75 ✅ · Playwright sharing 2/2 ✅ (create link, SSR + OG, signed-out copy through sign-in, wishlist, view/copy/click tracking, revoke, /p/ page)
 - Phase 2: Playwright tracking 3/3 ✅ (calendar dots + retro marker, streak/rollover cron + Day N, finish → history/repurchase)
 - Phase 1: Vitest 74/74 ✅ · Playwright 3/3 ✅ (solo MVP flow: sign up → 5 products → morning regimen → complete incl. timer + skip-wait + success → next logical day reappears → missed day resets streak) · lint ✅ · build ✅
@@ -59,9 +60,10 @@ npm run lint && npm run build
 - Hosted Supabase project: URL, anon key, service-role key, DATABASE_URL (pooler).
 - Google OAuth client ID/secret (configure in Supabase → Auth → Providers).
 - SMTP provider for production magic-link email.
-- VAPID keys for Web Push (or let me generate them on deploy).
-- Hosting (Vercel) + production domain.
+- VAPID keys for production Web Push (`npm run gen:vapid`; dev keys are in the gitignored `.env.local`).
+- Separate GitHub repo, Supabase project and Vercel project for regi (nothing is linked yet — this is a local repo only) + production domain.
+- Vercel plan: per-minute cron for push needs Pro; on Hobby use Supabase Cron (`regi_schedule_jobs`).
 - Terms / Privacy copy (placeholder pages at /terms, /privacy).
 
 ## Next step
-Phase 4 — Notifications + Web Push, account deletion check, /dev/screens, accessibility pass, Lighthouse.
+All phases complete. Next: Mikaela creates the regi GitHub repo + Supabase + Vercel projects (see Needs Mikaela), then follow README → Deploy. Run `supabase start` + `supabase db reset` once Docker is installed to validate migrations on real Supabase.

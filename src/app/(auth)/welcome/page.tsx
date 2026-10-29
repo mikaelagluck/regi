@@ -17,8 +17,9 @@ export default async function WelcomePage({ searchParams }: { searchParams: Prom
   const next = safeNext(sp.next);
   const user = await getSessionUser();
   if (user) {
+    // A session whose user no longer exists (e.g. deleted account) is treated as signed out.
     const profile = await getProfile(user.id);
-    redirect(profile?.username ? next : `/welcome/username?next=${encodeURIComponent(next)}`);
+    if (profile) redirect(profile.username ? next : `/welcome/username?next=${encodeURIComponent(next)}`);
   }
   return (
     <WelcomeScreen

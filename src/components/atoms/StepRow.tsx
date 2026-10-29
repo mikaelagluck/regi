@@ -99,8 +99,9 @@ export function StepRow({ title, subtitle, lead = 'check', index, checked = fals
       {lead === 'number' && (
         <span className={s.num} aria-hidden>{(index ?? 0) + 1}</span>
       )}
-      <button type="button" className={s.main} onClick={onOpen} disabled={!onOpen} aria-label={onOpen ? `Open ${title}` : undefined}>
+      <button type="button" className={s.main} onClick={onOpen} disabled={!onOpen}>
         <span className={s.title}>
+          {onOpen && <span className="sr-only">Open </span>}
           {lead === 'number' && <span className="sr-only">Step {(index ?? 0) + 1}: </span>}
           {title}
         </span>

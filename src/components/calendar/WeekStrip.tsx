@@ -17,11 +17,11 @@ export function WeekStrip({ days, selected, today }: { days: MonthDay[]; selecte
             scroll={false}
             className={[s.day, sel ? s.sel : '', d.date === today ? s.today : '', d.future ? s.future : ''].join(' ')}
             aria-current={sel ? 'date' : undefined}
-            aria-label={`${formatShortDate(d.date)}${d.dots.length ? `: ${d.dots.map((x) => DOT_LABEL[x.state]).join(', ')}` : ''}`}
           >
-            <span className={s.dow}>{formatShortDate(d.date).slice(0, 1)}</span>
+            <span className={s.dow} aria-hidden>{formatShortDate(d.date).slice(0, 1)}</span>
             <span className={s.num}>{Number(d.date.slice(8))}</span>
-            <span className={s.dots}>{d.dots.map((x) => <Dot key={x.regimen_id} state={x.state} size={5} />)}</span>
+            <span className="sr-only">{` ${formatShortDate(d.date)}${d.dots.length ? `: ${d.dots.map((x) => DOT_LABEL[x.state]).join(', ')}` : ''}`}</span>
+            <span className={s.dots} aria-hidden>{d.dots.map((x) => <Dot key={x.regimen_id} state={x.state} size={5} />)}</span>
           </Link>
         );
       })}

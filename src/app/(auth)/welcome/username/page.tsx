@@ -11,6 +11,7 @@ export default async function UsernamePage({ searchParams }: { searchParams: Pro
   const user = await getSessionUser();
   if (!user) redirect(`/welcome?next=${encodeURIComponent(next)}`);
   const profile = await getProfile(user.id);
-  if (profile?.username) redirect(next);
-  return <UsernameForm next={next} initialDisplayName={profile?.display_name ?? ''} />;
+  if (!profile) redirect(`/welcome?next=${encodeURIComponent(next)}`);
+  if (profile.username) redirect(next);
+  return <UsernameForm next={next} initialDisplayName={profile.display_name ?? ''} />;
 }

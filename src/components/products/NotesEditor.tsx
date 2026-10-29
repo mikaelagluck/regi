@@ -32,8 +32,8 @@ export function NotesEditor({ productId, initial }: { productId: string; initial
           </div>
         </div>
       ) : (
-        <button type="button" className={s.view} onClick={() => setEditing(true)} aria-label={initial ? `Notes: ${initial}. Tap to edit` : 'Add notes'}>
-          {initial ? <span>{initial}</span> : <span className="t-secondary">Tap to add notes</span>}
+        <button type="button" className={s.view} onClick={() => setEditing(true)}>
+          {initial ? <span>{initial}<span className="sr-only"> (edit notes)</span></span> : <span className="t-secondary">Tap to add notes</span>}
         </button>
       )}
     </section>

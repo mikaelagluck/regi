@@ -1,23 +1,38 @@
-# regi — Claude Code handoff package (web app)
+# *regi
 
+Mobile-first skincare regimen tracker — installable PWA. Next.js (App Router) + Supabase.
+Specs: `CLAUDE.md` (rules, iOS→web translation), `docs/PRD_v3.0.md`, `design/`. Status: `PROGRESS.md`. Judgment calls: `DECISIONS.md`.
+
+## Run locally (no Docker, no accounts needed)
+```bash
+export PATH="$HOME/.local/node/bin:$PATH"   # if Node isn't on your PATH (Node 20+)
+npm install
+npm run dev        # http://localhost:3000
 ```
-BUILD_PROMPT.md        ← paste this into Claude Code
-CLAUDE.md              ← persistent rules, iOS→web translation, resolved spec conflicts (auto-read by Claude Code)
-docs/PRD_v3.0.md       ← full v1 spec (written for iOS; behaviour, data model and copy still apply)
-docs/BUILD_APPROACH.md ← phase plan + tactics
-design/tokens.md       ← colour, type, logo — visual source of truth
-design/Regi-moodboard.html   ← visual system reference   (add from Drive if missing)
-design/Regi_Wireframes.html  ← 27-screen layout reference (add from Drive if missing)
+With no Supabase env vars set, the app uses an in-process Postgres (PGlite, data in `.data/`) with the real
+migrations, and dev sign-in: "Continue with email" shows an **Open magic link (dev)** button.
+`npm run db:reset` wipes the local database. Dev-only galleries: `/dev/atoms`, `/dev/screens`.
+
+## Tests
+```bash
+npm test           # Vitest: logicalDate/DST, schedule resolver, streaks, timers + migrations & RLS on real Postgres
+npm run test:e2e   # Playwright: builds, runs `next start` on :3100 with a fresh DB (first run: npx playwright install chromium)
+npm run lint && npm run typecheck && npm run build
 ```
 
-Drive folder with the design files: https://drive.google.com/drive/folders/1L7gTedE8FfZp1WW3yEas2XlBXjxS_NlE
-
-## Before you start
-- Node 20+, Supabase CLI (`brew install supabase/tap/supabase`), Docker running (for `supabase start`)
-- Credentials Claude Code will ask for later (it builds against local Supabase with placeholders until then): hosted Supabase project keys, Google OAuth client, email provider for magic links, hosting/domain.
-
-## Run
-1. Unzip into an empty folder, put the two HTML files in `design/`, `cd` in, run `claude`.
-2. Paste the prompt from `BUILD_PROMPT.md`.
-3. If the session ends early: "Continue the regi build from PROGRESS.md. Re-read CLAUDE.md first."
-4. Review `DECISIONS.md` when it's done.
+## Deploy (Supabase + Vercel)
+1. **Supabase** — create a project (separate from any other app), then:
+   ```bash
+   npx supabase login
+   npx supabase link --project-ref <ref>
+   npx supabase db push            # applies supabase/migrations (schema, RLS, categories, storage bucket)
+   ```
+   - Auth → URL configuration: Site URL `https://<domain>`, redirect `https://<domain>/auth/callback`.
+   - Auth → Providers: enable Google (client ID/secret); Auth → SMTP: your email provider for magic links.
+   - Scheduled jobs (pick one): Vercel Cron (`vercel.json`; per-minute needs Vercel Pro) **or** Supabase Cron —
+     enable `pg_cron` + `pg_net`, then run `select public.regi_schedule_jobs('https://<domain>', '<CRON_SECRET>');`
+2. **Vercel** — import the GitHub repo, set every variable in `.env.example`
+   (`NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`,
+   `DATABASE_URL` = Supabase "Transaction pooler" string, `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY`,
+   `VAPID_SUBJECT`, `CRON_SECRET`). Leave `ALLOW_DEV_AUTH` / `ALLOW_TIME_TRAVEL` unset. Deploy.
+3. Generate production VAPID keys with `npm run gen:vapid`.

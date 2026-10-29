@@ -22,6 +22,10 @@ One line per judgment call: what was ambiguous → what I chose (where). ★ = w
 - Category reference data lives in a migration (prod needs it), not only `seed.sql`. 27 categories across all 9 step types.
 
 ## Security / privacy
+- ★ Deleting a product converts regimen steps (and per-day overrides) that used it into free-text "Brand Name" steps via a BEFORE DELETE trigger, instead of failing the step check constraint or blanking history. Also what makes account deletion cascade cleanly. (migration 6, tested)
+- Account deletion: confirm by typing your username; deletes `public.users` (cascades to all user data) then the Supabase auth user via the service role.
+- Product shares (`/p/`) get their own `wishlist_from_product_share()`; wishlist-adding a shared product counts as a "copy" in stats.
+- Share pages are `noindex` (v1 shares are unlisted, C8) and ISR-cached 60s, so a revoked link can keep rendering from cache for up to a minute; the API and copy/wishlist actions refuse immediately.
 - ★ **Shares are not publicly SELECT-able.** C6.1 says share_artifacts are "publicly readable when active"; a table-level public policy would let anyone enumerate every unlisted share via PostgREST. Public access is via `public_share(slug)` (SECURITY DEFINER), which requires the slug and returns only public fields — never journal notes or product notes (C6.2). Covered by tests.
 - Users can't write their own counters (column-level grants); streak/lifetime/share counters are written server-side only.
 - RLS `with check` also verifies referenced regimens/products belong to the caller (prevents attaching rows to someone else's regimen id). Tested.
@@ -36,6 +40,9 @@ One line per judgment call: what was ambiguous → what I chose (where). ★ = w
 - `started_on` auto-defaults to the first logged use (C2.4).
 
 ## UX
+- Notifications: the three master toggles (B8.3) save immediately; turning one on asks for browser permission and subscribes this device to Web Push. iPhone users see "add to Home Screen" guidance (iOS only allows push for installed PWAs). Wait-timer screen also asks for permission in context the first time a timer starts.
+- Without VAPID keys push sending is stubbed (logged as `[push stub]`, marked sent); in-app toasts always fire for timer completion.
+- Accessibility: visible text is always part of a control's accessible name (screen-reader-only suffixes instead of overriding `aria-label`s); calendar cells announce date + per-regimen state; checkboxes announce "done" and "(logged later)".
 - Calendar: selected day = pink fill (active), today = ink ring, future = dashed border; legend under the grid repeats the four dot shapes. Calendar Day view reuses the Today screen with a week strip and Day/Month toggle above it.
 - Calendar dots for past days resolve schedules as of that day (assignments are end-dated, not rewritten), so changing a schedule doesn't repaint history; days with logged instances always show them even if the schedule later changed.
 - Expanded day card links to that day's full Day view ("Log this day" for past days) — that is the retroactive-logging entry point (B6.4).

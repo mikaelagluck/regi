@@ -12,10 +12,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "db:reset": "node scripts/db-reset.mjs",
     "gen:tokens": "node scripts/gen-tokens.mjs",
-    "gen:icons": "node scripts/gen-icons.mjs",
-    "gen:vapid": "web-push generate-vapid-keys"
+    "gen:vapid": "web-push generate-vapid-keys",
+    "db:reset": "rm -rf .data/pglite .data/uploads"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
@@ -37,6 +36,7 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.64.1",
     "@types/node": "^26.6.6",
     "@types/pg": "^8.23.1",

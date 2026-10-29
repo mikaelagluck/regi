@@ -170,3 +170,21 @@ describe('product shares', () => {
     await expect(db.asAnon((tx) => tx.q(`select wishlist_from_product_share('prod12345')`))).rejects.toThrow(/permission denied/);
   });
 });
+
+describe('deleting a product', () => {
+  it('turns linked steps into free-text steps instead of failing', async () => {
+    const cat = await catId('cleanse');
+    const pid = (await db.asUser(B, (tx) => tx.one<{ id: string }>(`insert into user_products (user_id, brand, name, category_id) values ($1, 'DHC', 'Oil Cleanser', $2) returning id`, [B, cat])))!.id;
+    const rid = (await db.asUser(B, (tx) => tx.one<{ id: string }>(`insert into regimens (owner_user_id, name, time_of_day) values ($1, 'PM', 'evening') returning id`, [B])))!.id;
+    await db.asUser(B, (tx) => tx.q(`insert into regimen_steps (regimen_id, position, user_product_id, step_type) values ($1, 0, $2, 'cleanse')`, [rid, pid]));
+    await db.asUser(B, (tx) => tx.q('delete from user_products where id = $1', [pid]));
+    const st = await db.asUser(B, (tx) => tx.one('select user_product_id, free_text_label from regimen_steps where regimen_id = $1', [rid]));
+    expect(st).toEqual({ user_product_id: null, free_text_label: 'DHC Oil Cleanser' });
+  });
+
+  it('account deletion cascades cleanly', async () => {
+    await db.asService((tx) => tx.q('delete from auth.users where id = $1', [B]));
+    expect(await db.asService((tx) => tx.q('select 1 from public.users where id = $1', [B]))).toHaveLength(0);
+    expect(await db.asService((tx) => tx.q('select 1 from public.regimens where owner_user_id = $1', [B]))).toHaveLength(0);
+  });
+});

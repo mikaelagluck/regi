@@ -177,9 +177,9 @@ export function TodayScreen({ initial, basePath = '/today', header, hideDateNav 
   const dateNav = !hideDateNav && (
     <header className={s.header}>
       <button type="button" className={s.chev} onClick={() => go(addDays(day.date, -1))} aria-label="Previous day"><IconChevronLeft size={22} aria-hidden /></button>
-      <button type="button" className={s.date} onClick={() => dateInput.current?.showPicker?.() ?? dateInput.current?.click()} aria-label={`${dayLabel(day.date, day.today)}, ${formatShortDate(day.date)}. Choose a date`}>
+      <button type="button" className={s.date} onClick={() => dateInput.current?.showPicker?.() ?? dateInput.current?.click()} >
         <span className={s.dateLabel}>{dayLabel(day.date, day.today)}</span>
-        <span className={s.dateFull}>{formatShortDate(day.date)}</span>
+        <span className={s.dateFull}>{formatShortDate(day.date)}<span className="sr-only">, choose a date</span></span>
       </button>
       <input ref={dateInput} type="date" className={s.hiddenDate} value={day.date} onChange={(e) => e.target.value && go(e.target.value)} tabIndex={-1} aria-hidden />
       <button type="button" className={s.chev} onClick={() => go(addDays(day.date, 1))} aria-label="Next day"><IconChevronRight size={22} aria-hidden /></button>

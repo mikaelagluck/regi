@@ -54,12 +54,12 @@ export function MonthView({ data, selected, summary }: { data: CalendarMonth; se
                   scroll={false}
                   role="gridcell"
                   aria-selected={isSel}
-                  aria-label={label}
                   className={[s.cell, day.future ? s.future : '', isSel ? s.selected : '', isToday ? s.today : ''].join(' ')}
                   data-testid={`cal-${d}`}
                 >
                   <span className={s.num}>{Number(d.slice(8))}</span>
-                  <span className={s.dots}>{day.dots.map((x) => <Dot key={x.regimen_id} state={x.state} size={6} />)}</span>
+                  <span className="sr-only">{` ${label}`}</span>
+                  <span className={s.dots} aria-hidden>{day.dots.map((x) => <Dot key={x.regimen_id} state={x.state} size={6} />)}</span>
                 </Link>
               );
             })}
