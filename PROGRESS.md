@@ -29,10 +29,10 @@ Status legend: ✅ built & checked at 390px · 🟡 partial · ⬜ not started
 | 20 | `regimen-builder-schedule-range` | B5.5 date range | `/regimens/[id]/schedule?mode=range` | 1 | ✅ |
 | 21 | `edit-scope` | B5.6 | `/today` bottom sheet | 1 | ✅ |
 | 22 | `calendar-month` | B6.2–B6.4, B9.4 | `/calendar?view=month` (Day view = `/calendar?view=day`, B6.1) | 2 | ✅ |
-| 23 | `share-create` | B7.1 | `/share/new?type=regimen&id=…` | 3 | ⬜ |
-| 24 | `share-view` | B7.2, B7.4, B7.5 | `/r/[slug]` (public, SSR, OG); product: `/p/[slug]` | 3 | ⬜ |
-| 25 | `profile-01` | B8.1 | `/profile` | 0/4 | ⬜ |
-| 26 | `my-shares` | B8.2 | `/profile/shares`, drilldown `/profile/shares/[id]` | 3 | ⬜ |
+| 23 | `share-create` | B7.1 | `/share/new?type=regimen&id=…` | 3 | ✅ |
+| 24 | `share-view` | B7.2, B7.4, B7.5 | `/r/[slug]` (public, SSR, OG); product: `/p/[slug]` | 3 | ✅ |
+| 25 | `profile-01` | B8.1 | `/profile` | 0/4 | ✅ |
+| 26 | `my-shares` | B8.2 | `/profile/shares`, drilldown `/profile/shares/[id]` | 3 | ✅ |
 | 27 | `notifications` | B8.3 | `/profile/notifications` | 4 | ⬜ |
 | — | Archive surface (no wireframe) | B5.1 "Archived (N)" | `/regimens/archived` | 4 | ✅ |
 | — | Account deletion (no wireframe; CLAUDE.md conflict #9) | — | `/profile` → confirmation sheet | 4 | ⬜ |
@@ -50,6 +50,7 @@ npm run lint && npm run build
 
 ## Test status
 - Phase 0: Vitest 74/74 ✅ · Playwright auth 2/2 ✅ · lint ✅ · build ✅
+- Phase 3: Vitest 75/75 ✅ · Playwright sharing 2/2 ✅ (create link, SSR + OG, signed-out copy through sign-in, wishlist, view/copy/click tracking, revoke, /p/ page)
 - Phase 2: Playwright tracking 3/3 ✅ (calendar dots + retro marker, streak/rollover cron + Day N, finish → history/repurchase)
 - Phase 1: Vitest 74/74 ✅ · Playwright 3/3 ✅ (solo MVP flow: sign up → 5 products → morning regimen → complete incl. timer + skip-wait + success → next logical day reappears → missed day resets streak) · lint ✅ · build ✅
 
@@ -63,4 +64,4 @@ npm run lint && npm run build
 - Terms / Privacy copy (placeholder pages at /terms, /privacy).
 
 ## Next step
-Phase 3 — Sharing: share creation, public /r and /p pages, copy-to-my-regimens through sign-in, wishlist-add, tracking, My Shares.
+Phase 4 — Notifications + Web Push, account deletion check, /dev/screens, accessibility pass, Lighthouse.

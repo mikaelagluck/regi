@@ -11,16 +11,21 @@ import type { Db, Params, Tx } from './types';
 const root = /* turbopackIgnore: true */ process.cwd();
 
 async function migrate(db: PGlite) {
-  const exists = await db.query<{ ok: boolean }>(
-    `select to_regclass('public.users') is not null as ok`,
-  );
-  if (exists.rows[0]?.ok) return;
-  await db.exec(fs.readFileSync(path.join(/* turbopackIgnore: true */ root, 'supabase/local-shim.sql'), 'utf8'));
+  const hasShim = await db.query<{ ok: boolean }>(`select to_regnamespace('auth') is not null as ok`);
+  if (!hasShim.rows[0]?.ok) await db.exec(fs.readFileSync(path.join(/* turbopackIgnore: true */ root, 'supabase/local-shim.sql'), 'utf8'));
+  // Local-only bookkeeping (Supabase tracks applied migrations itself).
+  await db.exec('create table if not exists public._local_migrations (name text primary key, applied_at timestamptz not null default now())');
+  const applied = new Set((await db.query<{ name: string }>('select name from public._local_migrations')).rows.map((r) => r.name));
   const dir = path.join(/* turbopackIgnore: true */ root, 'supabase/migrations');
+  const fresh = applied.size === 0;
   for (const file of fs.readdirSync(dir).filter((f) => f.endsWith('.sql')).sort()) {
-    await db.exec(fs.readFileSync(path.join(dir, file), 'utf8'));
+    if (applied.has(file)) continue;
+    await db.transaction(async (tx) => {
+      await tx.exec(fs.readFileSync(path.join(dir, file), 'utf8'));
+      await tx.query('insert into public._local_migrations (name) values ($1)', [file]);
+    });
   }
-  await db.exec(fs.readFileSync(path.join(/* turbopackIgnore: true */ root, 'supabase/seed.sql'), 'utf8'));
+  if (fresh) await db.exec(fs.readFileSync(path.join(/* turbopackIgnore: true */ root, 'supabase/seed.sql'), 'utf8'));
 }
 
 export async function openPglite(dataDir?: string): Promise<PGlite> {

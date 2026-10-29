@@ -83,3 +83,8 @@ export function shareUrl(slug: string, type: Share['entity_type']) {
   const base = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://localhost:3000';
   return `${base}/${type === 'user_product' ? 'p' : 'r'}/${slug}`;
 }
+
+export async function wishlistFromProductShare(tx: Tx, slug: string): Promise<string> {
+  const row = await tx.one<{ id: string }>('select wishlist_from_product_share($1) as id', [slug]);
+  return row!.id;
+}

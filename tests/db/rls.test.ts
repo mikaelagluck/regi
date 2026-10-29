@@ -157,3 +157,16 @@ describe('cross-user references are rejected', () => {
     await expect(db.asUser(B, (tx) => tx.q(`insert into regimen_steps (regimen_id, position, user_product_id, step_type) values ($1, 0, $2, 'treat')`, [regB, prodA]))).rejects.toThrow(/row-level security/);
   });
 });
+
+describe('product shares', () => {
+  it('wishlist_from_product_share copies the product to the caller and counts it', async () => {
+    const prodA = (await db.asUser(A, (tx) => tx.one<{ id: string }>(`select id from user_products where brand = 'SkinCeuticals'`)))!.id;
+    await db.asUser(A, (tx) => tx.q(`insert into share_artifacts (share_slug, creator_user_id, entity_type, entity_id) values ('prod12345', $1, 'user_product', $2)`, [A, prodA]));
+    const pub = await db.asAnon((tx) => tx.one<{ s: { product: { brand: string; name: string } } }>(`select public_share('prod12345') as s`));
+    expect(pub!.s.product).toMatchObject({ brand: 'SkinCeuticals', name: 'CE Ferulic' });
+    expect(JSON.stringify(pub)).not.toContain('private note');
+    const id = (await db.asUser(B, (tx) => tx.one<{ id: string }>(`select wishlist_from_product_share('prod12345') as id`)))!.id;
+    expect(await db.asUser(B, (tx) => tx.one(`select state::text as state, affiliate_url from user_products where id = $1`, [id]))).toEqual({ state: 'wishlist', affiliate_url: 'https://shop.test/ce' });
+    await expect(db.asAnon((tx) => tx.q(`select wishlist_from_product_share('prod12345')`))).rejects.toThrow(/permission denied/);
+  });
+});
